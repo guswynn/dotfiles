@@ -12,6 +12,7 @@ set backspace=indent,eol,start
 syntax on
 set autoindent
 set smartindent
+filetype indent on
 "set cindent
 "let delimitMate_expand_cr=1
 
