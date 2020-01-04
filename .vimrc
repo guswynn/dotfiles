@@ -91,13 +91,8 @@ let g:ale_python_yapf_use_global=1
 let g:ale_echo_msg_format = '[%linter%] %s'
 
 " Format Python with https://github.com/ambv/black
-let g:black_file = readfile('/home/azw/black_dirs')
 function Blackify()
-  for s:line in g:black_file
-    if matchstr(resolve(expand('%:p')), s:line) == s:line
-      let b:ale_fixers = {'python': ['pyfmt']}
-    endif
-  endfor
+  let b:ale_fixers = {'python': ['pyfmt']}
 
 endfunction
 

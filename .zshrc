@@ -1,4 +1,4 @@
-export CLICOLOR=true
+  
 export HISTFILE="$HOME/.zsh-history"
 export HISTSIZE=SAVEHIST=10240
 export LESSHISTFILE="-" # disable less history
@@ -38,10 +38,6 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 export TERMINFO=~/.terminfo
-# source facebook definitions
-. /usr/facebook/ops/rc/master.zshrc
-
-. $ADMIN_SCRIPTS/scm-prompt
 
 autoload colors; colors
 
@@ -53,18 +49,6 @@ cwd () {
   dir="${PWD/#$HOME/~}"
   dir="${dir//\/data\/users\/$USER/~}"
   echo "$dir"
-}
-# some completion files
-autoload -Uz compinit
-compinit -u
-complete /home/azw/fbcode/experimental/jsvana/fb_tools/_fb.zsh
-
-# oldddd
-# 2-line prompt and scm prompt
-function parse_hg_branch {
-  if [[ -n $(_scm_prompt) ]]; then
-    echo "$(_scm_prompt \(%s\))"
-  fi
 }
 
 # new
