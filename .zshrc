@@ -1,4 +1,5 @@
-  
+export CLICOLOR=true
+
 export HISTFILE="$HOME/.zsh-history"
 export HISTSIZE=SAVEHIST=10240
 export LESSHISTFILE="-" # disable less history
