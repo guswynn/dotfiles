@@ -55,30 +55,22 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-let mapleader = "\<Space>"
-function! FollowTag()
-    if !exists("w:tagbrowse")
-        vsplit
-        let w:tagbrowse=1
-    endif
-    execute "tag " . expand("<cword>")
-    execute "normal! \<c-w>="
-endfunction
-nnoremap <Leader><Leader> :call FollowTag()<CR>
 
-function! EditTarget()
-    let basepath = expand('%:p:h') . '/TARGETS'
-    if !filereadable(basepath)
-        let basepath = expand('%:p:h') . '/../TARGETS'
-        if !filereadable(basepath)
-            echo "Cannot find TARGETS file"
-            return
-        endif
-    endif
-    execute "vsplit " . basepath
-endfunction
-nnoremap <Leader>t :call EditTarget()<CR>
+" vimwiki ??
+let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
+" ALE
+" 
+" installing ale with neovim https://github.com/dense-analysis/ale#standard-installation
+" mkdir -p ~/.local/share/nvim/site/pack/git-plugins/start
+" git clone --depth 1 https://github.com/dense-analysis/ale.git ~/.local/share/nvim/site/pack/git-plugins/start/ale
+" or use ~/.vim/pack/git-plugins/start
+"
+" make sure to intall cargo/rustfmt/etc and black
+" rust guide: https://github.com/dense-analysis/ale/blob/master/doc/ale-rust.txt
+
+
+" ALE settings
 let g:ale_lint_on_enter = 0
 let g:ale_python_autopep8_use_global=1
 let g:ale_python_flake8_use_global=1
@@ -89,23 +81,24 @@ let g:ale_python_pycodestyle_use_global=1
 let g:ale_python_pylint_use_global=1
 let g:ale_python_yapf_use_global=1
 let g:ale_echo_msg_format = '[%linter%] %s'
+let g:rustfmt_autosave = 1
 
-" Format Python with https://github.com/ambv/black
-function Blackify()
-  let b:ale_fixers = {'python': ['pyfmt']}
-
-endfunction
-
-autocmd BufNewFile,BufRead *.py call Blackify()
-
-autocmd BufNewFile,BufRead *.h,*.cpp let b:ale_fixers = {'cpp': ['clang-format']}
+" Fixers and Linters
+let g:ale_fixers = {'rust': ['rustfmt'], 'python': ['isort', 'black']}
+let g:ale_linters = {'python': ['flake8']}
 
 " Format when we save
 let g:ale_fix_on_save = 1
 
-" vimwiki lmaoooo got em
-let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
-
 " Easy movement between lint warnings and errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
+
+
+" Language server support
+" install https://github.com/autozimu/LanguageClient-neovim/blob/next/INSTALL.md
+set runtimepath+=~/.vim-plugins/LanguageClient-neovim
+
+" For rust analyzer
+" Install the analyzer here: https://github.com/rust-analyzer/rust-analyzer/tree/master/docs/user
+let g:LanguageClient_serverCommands = {'rust': ['ra_lsp_server']}

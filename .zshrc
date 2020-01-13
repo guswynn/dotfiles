@@ -171,3 +171,5 @@ function append {
     sed "s|$|$1|"
 }
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
