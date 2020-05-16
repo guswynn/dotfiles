@@ -1,4 +1,3 @@
-
-
-
-test = 'test'
+def test():
+    test = "test"
+    test = "test"

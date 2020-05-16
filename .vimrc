@@ -87,6 +87,9 @@ let g:rustfmt_autosave = 1
 let g:ale_fixers = {'rust': ['rustfmt'], 'python': ['isort', 'black']}
 let g:ale_linters = {'python': ['flake8']}
 
+" let g:ale_rust_rls_executable = 'rust-analyzer'
+" let g:ale_rust_rls_toolchain = ''
+
 " Format when we save
 let g:ale_fix_on_save = 1
 
@@ -101,4 +104,8 @@ set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 
 " For rust analyzer
 " Install the analyzer here: https://github.com/rust-analyzer/rust-analyzer/tree/master/docs/user
-let g:LanguageClient_serverCommands = {'rust': ['ra_lsp_server']}
+let g:LanguageClient_serverCommands = {'rust': ['rust-analyzer']}
+
+
+" Also might want to try this:
+" https://github.com/rust-lang/rust.vim

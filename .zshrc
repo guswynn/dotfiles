@@ -115,6 +115,7 @@ bindkey '^R' history-incremental-search-backward
 
 export EDITOR=nvim
 export PATH=$PATH:$HOME/bin
+export PATH=$PATH:$HOME/.local/bin
 export HISTSIZE=100000
 
 unset USERNAME
