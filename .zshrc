@@ -10,7 +10,7 @@ setopt AUTO_CD
 setopt COMPLETE_ALIASES
 setopt COMPLETE_IN_WORD
 setopt CORRECT
-setopt EXTENDED_GLOB
+unset EXTENDED_GLOB
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_REDUCE_BLANKS
 setopt LOCAL_OPTIONS # allow functions to have local options
