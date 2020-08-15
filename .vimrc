@@ -71,7 +71,7 @@ let g:vimwiki_list = [{'path': '~/wiki/', 'syntax': 'markdown', 'ext': '.md'}]
 
 
 " ALE settings
-let g:ale_lint_on_enter = 0
+" python
 let g:ale_python_autopep8_use_global=1
 let g:ale_python_flake8_use_global=1
 let g:ale_python_isort_use_global=1
@@ -80,32 +80,58 @@ let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:ale_python_pycodestyle_use_global=1
 let g:ale_python_pylint_use_global=1
 let g:ale_python_yapf_use_global=1
+
+" how it shoes up
 let g:ale_echo_msg_format = '[%linter%] %s'
+" let g:ale_hover_to_preview = 1
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 1
+" only in NeoVim, cancels out the message at the bottom
+" let g:ale_virtualtext_cursor = 1
+" let g:ale_cursor_detail = 1
+let g:ale_close_preview_on_insert = 1
+let g:ale_set_balloons = 1
+
+
+" when it shows up
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 1
 let g:rustfmt_autosave = 1
 
 " Fixers and Linters
 let g:ale_fixers = {'rust': ['rustfmt'], 'python': ['isort', 'black']}
-let g:ale_linters = {'python': ['flake8']}
+
+" https://rust-analyzer.github.io/manual.html#ale
+let g:ale_linters = {'python': ['flake8'], 'rust': ['analyzer']}
 
 " let g:ale_rust_rls_executable = 'rust-analyzer'
 " let g:ale_rust_rls_toolchain = ''
 
-" Format when we save
-let g:ale_fix_on_save = 1
 
 " Easy movement between lint warnings and errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 
+" Not needed with ale anymore
 " Language server support
 " install https://github.com/autozimu/LanguageClient-neovim/blob/next/INSTALL.md
 set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 
 " For rust analyzer
 " Install the analyzer here: https://github.com/rust-analyzer/rust-analyzer/tree/master/docs/user
-let g:LanguageClient_serverCommands = {'rust': ['rust-analyzer']}
+" let g:LanguageClient_serverCommands = {'rust': ['rust-analyzer']}
 
 
 " Also might want to try this:
 " https://github.com/rust-lang/rust.vim
+" and this: https://rust-analyzer.github.io/manual.html#coc-rust-analyzer
+"
+"
+" read more about jumping around: https://github.com/dense-analysis/ale/blob/master/doc/ale.txt
+" https://github.com/neoclide/coc.nvim/wiki/Install-coc.nvim
+"
+"
+let mapleader =" "
+nmap <leader><space> <Plug>(ale_detail)
