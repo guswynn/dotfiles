@@ -27,6 +27,9 @@ highlight ColorColumn ctermbg=0
 highlight SignColumn ctermbg=0
 highlight SpellBad ctermbg=9
 
+" make search and replace preview
+set inccommand=nosplit
+
 set hlsearch
 highlight Search ctermfg=yellow
 set wildmode=longest,list,full
