@@ -145,6 +145,8 @@ nmap <leader><space> <Plug>(ale_detail)
 " builtin, altered for search
 colorscheme peachpuff
 hi Search ctermfg=Black
+hi SpellBad ctermfg=Black
+hi SpellCap ctermfg=Black
 " you may also like this
 " https://github.com/chriskempson/base16-vim 
 " colorscheme base16-default-dark
