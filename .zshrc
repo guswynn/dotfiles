@@ -38,6 +38,7 @@ bindkey '^[[Z' reverse-menu-complete
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 export TERMINFO=~/.terminfo
+# see https://unix.stackexchange.com/questions/20298/home-key-not-working-in-terminal
 
 autoload colors; colors
 
