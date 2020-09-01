@@ -17,6 +17,7 @@
   # rename branch: https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
   # git branch -m master main
   # git push -u origin main
+  # git push origin --delete <old branch>
 
 [init]
   defaultBranch = main
