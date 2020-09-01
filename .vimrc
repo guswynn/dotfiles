@@ -100,8 +100,18 @@ let g:rustfmt_autosave = 1
 " Fixers and Linters
 let g:ale_fixers = {'rust': ['rustfmt'], 'python': ['isort', 'black']}
 
+let g:ale_linters = {'python': ['flake8']}
+
 " https://rust-analyzer.github.io/manual.html#ale
-let g:ale_linters = {'python': ['flake8'], 'rust': ['analyzer']}
+function RustAnalyzer()
+  if expand("%:p") =~ "repos/rust"
+    let b:ale_linters = {'python': ['flake8']}
+  else
+    let b:ale_linters = {'python': ['flake8'], 'rust': ['analyzer']}
+  endif
+endfunction
+
+autocmd BufNewFile,BufRead *.rs call RustAnalyzer()
 
 " let g:ale_rust_rls_executable = 'rust-analyzer'
 " let g:ale_rust_rls_toolchain = ''
