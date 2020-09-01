@@ -15,6 +15,8 @@
   # git rebase upstream/<main branch>
   # then push, might need force
   # rename branch: https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
+  # git branch -m master main
+  # git push -u origin main
 
 [init]
   defaultBranch = main
