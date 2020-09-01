@@ -22,7 +22,6 @@ syntax on
 ""Set expand Tab is off for now"
 filetype plugin on
 set expandtab"
-colorscheme peachpuff
 highlight ColorColumn ctermbg=0
 highlight SignColumn ctermbg=0
 highlight SpellBad ctermbg=9
@@ -38,7 +37,7 @@ set wildmenu
 "" from guide
 set showcmd
 "set cursorline
-set colorcolumn=80,88
+" set colorcolumn=80,88
 
 set scrolljump=1
 
@@ -138,3 +137,17 @@ set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 "
 let mapleader =" "
 nmap <leader><space> <Plug>(ale_detail)
+
+
+
+" Try out new colors
+" install vim colors here here: https://vi.stackexchange.com/questions/14587/which-directory-to-put-color-schemes
+"
+" Term colors: https://github.com/martinlindhe/base16-iterm2
+" You like base16-chalk
+"
+" builtin
+colorscheme peachpuff
+" you may also like this
+" https://github.com/chriskempson/base16-vim 
+" colorscheme base16-default-dark
