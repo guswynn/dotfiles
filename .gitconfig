@@ -8,3 +8,13 @@
   d = diff
   da = diff --cached
   sl = log --graph --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
+  # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
+  newup = remote add upstream
+  # then
+  # git fetch upstream
+  # git rebase upstream/<main branch>
+  # then push, might need force
+  # rename branch: https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
+
+[init]
+  defaultBranch = main

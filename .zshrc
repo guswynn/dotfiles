@@ -174,8 +174,13 @@ function append {
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
-
-
 # ls
 alias ls="exa"
 export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
+
+# movement
+alias code="cd ~/repos"
+alias repos="cd ~/repos"
+alias dot="cd ~/repos/dotfiles"
+alias dotfile="cd ~/repos/dotfiles"
+alias dotfiles="cd ~/repos/dotfiles"
