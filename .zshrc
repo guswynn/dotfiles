@@ -3,7 +3,6 @@ export CLICOLOR=true
 export HISTFILE="$HOME/.zsh-history"
 export HISTSIZE=SAVEHIST=10240
 export LESSHISTFILE="-" # disable less history
-export LSCOLORS="exfxcxdxbxegedabagacad"
 
 setopt APPEND_HISTORY
 setopt AUTO_CD
@@ -174,3 +173,9 @@ function append {
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
+
+
+
+# ls
+alias ls="exa"
+export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"

@@ -22,15 +22,11 @@ syntax on
 ""Set expand Tab is off for now"
 filetype plugin on
 set expandtab"
-highlight ColorColumn ctermbg=0
-highlight SignColumn ctermbg=0
-highlight SpellBad ctermbg=9
 
 " make search and replace preview
 set inccommand=nosplit
 
 set hlsearch
-highlight Search ctermfg=yellow
 set wildmode=longest,list,full
 set wildmenu
 "
@@ -146,8 +142,9 @@ nmap <leader><space> <Plug>(ale_detail)
 " Term colors: https://github.com/martinlindhe/base16-iterm2
 " You like base16-chalk
 "
-" builtin
+" builtin, altered for search
 colorscheme peachpuff
+hi Search ctermfg=Black
 " you may also like this
 " https://github.com/chriskempson/base16-vim 
 " colorscheme base16-default-dark
