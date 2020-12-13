@@ -141,7 +141,7 @@ function rg() {
     if [ -t 1 ]; then
         command rg -p "$@" | less -RFX
     else
-        command rg "$@"
+        command rg --line-number "$@"
     fi
 }
 
@@ -182,6 +182,13 @@ export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
 # movement
 alias code="cd ~/repos"
 alias repos="cd ~/repos"
+alias rust="cd ~/repos/rust"
+alias rust2="cd ~/repos/rust2"
 alias dot="cd ~/repos/dotfiles"
 alias dotfile="cd ~/repos/dotfiles"
 alias dotfiles="cd ~/repos/dotfiles"
+alias x="~/repos/rust/x.py"
+alias x2="~/repos/rust2/x.py"
+
+# arduino
+export PATH=$PATH:$HOME/Library/Arduino15/packages/arduino/tools/bossac/1.7.0-arduino3

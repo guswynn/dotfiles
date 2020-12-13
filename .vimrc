@@ -95,10 +95,11 @@ let g:ale_set_balloons = 1
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
-let g:rustfmt_autosave = 1
+"let g:rustfmt_autosave = 1
 
 " Fixers and Linters
-let g:ale_fixers = {'rust': ['rustfmt'], 'python': ['isort', 'black']}
+let g:ale_fixers = {'rust': ["rustfmt"], 'python': ['isort', 'black']}
+let g:ale_rust_rustfmt_options = "+nightly"
 
 let g:ale_linters = {'python': ['flake8']}
 
@@ -160,3 +161,6 @@ hi SpellCap ctermfg=Black
 " you may also like this
 " https://github.com/chriskempson/base16-vim 
 " colorscheme base16-default-dark
+"
+
+hi rustInvalidBareKeyword ctermbg=Black ctermfg=darkred
