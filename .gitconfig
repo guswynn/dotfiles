@@ -25,3 +25,6 @@
 
 [init]
   defaultBranch = main
+
+[diff]
+  noprefix = true
