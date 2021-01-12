@@ -11,3 +11,4 @@ a focus on rust
 - document terminfo stuff (home and end issues)
 - document rustfmt usage
 - .zshrc should +nightly rustfmt
+- fix prompt info

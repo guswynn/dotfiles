@@ -88,7 +88,7 @@ function extra_prompt_info {
 
 set -o vi
 
-PROMPT='%{$fg[magenta]%}%n@${HOSTNAME//.facebook.com} %{$fg[green]%}Helping %{$fg[blue]%}$(cwd) %{$fg[yellow]%} $(extra_prompt_info)
+PROMPT='%{$fg[magenta]%}%n@mac %{$fg[green]%}Helping %{$fg[blue]%}$(cwd) %{$fg[yellow]%} $(extra_prompt_info)
 %{$fg[cyan]%}%D{%F} %* $(vi_mode) > %{$reset_color%}'
 
 # Get the mode for vi mode
