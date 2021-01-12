@@ -1,3 +1,5 @@
+use std::mem::{needs_drop, replace};
+
 struct Gus {
     a: String,
 }

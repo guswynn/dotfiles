@@ -8,3 +8,6 @@ a focus on rust
 - switch to coc.nvim for rust-analyzer
 - resolve rust-analyzer issues
 - more cleanup
+- document terminfo stuff (home and end issues)
+- document rustfmt usage
+- .zshrc should +nightly rustfmt
