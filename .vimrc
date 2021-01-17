@@ -164,3 +164,7 @@ hi SpellCap ctermfg=Black
 "
 
 hi rustInvalidBareKeyword ctermbg=Black ctermfg=darkred
+" rust doc comments. DarkYellow is nice (maybe) too but doesnt correspond with a
+" iterm2 colorscheme, Red is bright red in iterm2
+" hi SpecialComment ctermfg=Red
+hi SpecialComment ctermfg=DarkYellow

@@ -4,6 +4,8 @@
   
 [alias]
   st = status
+  staged = diff --staged
+  ds = diff --staged
   s = status
   sh = show
   d = diff
