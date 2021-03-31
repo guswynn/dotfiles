@@ -1,6 +1,9 @@
 # dotfiles
 a focus on rust
 
+## Terminfo:
+- run `tic path/to/terminfo.src` in `$HOME`
+
 ## TODO:
 - document issue #2 (font usage)
 - document color usage
