@@ -8,6 +8,7 @@
   ds = diff --staged
   s = status
   sh = show
+  inf = show --name-only
   d = diff
   c = checkout
   up = checkout
@@ -20,10 +21,24 @@
   # git fetch upstream
   # git rebase upstream/<main branch>
   # then push, might need force
+  #
+  # or try this
+  # git switch -C master upstream/master
+  # git pull upstream/master
+  #
   # rename branch: https://www.hanselman.com/blog/EasilyRenameYourGitDefaultBranchFromMasterToMain.aspx
   # git branch -m master main
   # git push -u origin main
   # git push origin --delete <old branch>
+  #
+  # cleanup
+  # old branches:
+  # git branch --merged
+  # git branch -d <branch name>
+  #
+  # git remote prune origin (not sure on this one)
+  # git branch -r --merged
+  # git push origin --delete <branch name>
 
 [init]
   defaultBranch = main

@@ -33,7 +33,7 @@ zstyle ':completion:*' insert-tab pending
 
 zstyle ':completion:*' menu select
 
-bindkey -v
+# bindkey -v
 bindkey '^[[Z' reverse-menu-complete
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
@@ -192,3 +192,7 @@ alias x2="~/repos/rust2/x.py"
 
 # arduino
 export PATH=$PATH:$HOME/Library/Arduino15/packages/arduino/tools/bossac/1.7.0-arduino3
+
+# ruby
+export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
+export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"

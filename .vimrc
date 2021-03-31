@@ -168,3 +168,6 @@ hi rustInvalidBareKeyword ctermbg=Black ctermfg=darkred
 " iterm2 colorscheme, Red is bright red in iterm2
 " hi SpecialComment ctermfg=Red
 hi SpecialComment ctermfg=DarkYellow
+
+" markdown colors
+hi markdownItalic ctermbg=Yellow
