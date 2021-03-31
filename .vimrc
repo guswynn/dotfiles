@@ -163,6 +163,9 @@ hi SpellCap ctermfg=Black
 " colorscheme base16-default-dark
 "
 
+" no more ex mode
+:map Q <Nop>
+
 hi rustInvalidBareKeyword ctermbg=Black ctermfg=darkred
 " rust doc comments. DarkYellow is nice (maybe) too but doesnt correspond with a
 " iterm2 colorscheme, Red is bright red in iterm2
