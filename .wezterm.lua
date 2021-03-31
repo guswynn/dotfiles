@@ -29,9 +29,17 @@ return {
       font = font_with_fallback("Iosevka Term Extralight"),
     },
   },
-  font_size = 16.0,
+   -- Better for my monitor
+  dpi = 110.0,
+  font_size = 12,
+ 
   bold_brightens_ansi_colors = true,
   font_antialias = "Greyscale",
 
-  color_scheme = "Galizur",
+  -- color_scheme = "Galizur",
+  -- color_scheme = "Wryan",
+  -- color_scheme = "UnderTheSea",
+  -- color_scheme = "synthwave",
+  -- color_scheme = "Harper",
+  color_scheme = "3024 Night",
 }
