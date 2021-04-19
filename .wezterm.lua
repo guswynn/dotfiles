@@ -66,7 +66,7 @@ return {
 
   -- https://wezfurlong.org/wezterm/config/lua/config/selection_word_boundary.html#selection_word_boundary
   -- include punctuation
-  selection_word_boundary = " \t\n{}[]()\"'`,;:",
+  selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
 
   -- if needed: https://wezfurlong.org/wezterm/hyperlinks.html
   -- hyperlink_rules = {
