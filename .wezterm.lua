@@ -36,7 +36,7 @@ return {
   bold_brightens_ansi_colors = true,
   font_antialias = "Subpixel",
   -- no ligatures
-  harfbuzz_features = {"calt=1", "clig=0", "liga=0"},
+  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
 
   -- color_scheme = "Galizur",
   -- color_scheme = "Wryan",
@@ -67,6 +67,7 @@ return {
   -- https://wezfurlong.org/wezterm/config/lua/config/selection_word_boundary.html#selection_word_boundary
   -- include punctuation
   selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
+  asdfklajs
 
   -- if needed: https://wezfurlong.org/wezterm/hyperlinks.html
   -- hyperlink_rules = {
