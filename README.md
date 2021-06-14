@@ -18,6 +18,12 @@ a focus on rust
 - vim mode for tmux
 - Figure out WHY iosevka term light italic doesnt work no matter what I do
 
+# macos gui setup hints:
+- Mouse speed
+- non-natural scrolling
+- scroll speed
+- TODO: More here
+ 
 # Helpful links
 - https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
   - And others
