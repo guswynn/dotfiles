@@ -15,3 +15,8 @@ a focus on rust
 - document rustfmt usage
 - .zshrc should +nightly rustfmt
 - fix prompt info
+- vim mode for tmux
+
+# Helpful links
+- https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
+  - And others
