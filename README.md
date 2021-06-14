@@ -17,6 +17,12 @@ a focus on rust
 - fix prompt info
 - vim mode for tmux
 
+# macos gui setup hints:
+- Mouse speed
+- non-natural scrolling
+- scroll speed
+- TODO: More here
+ 
 # Helpful links
 - https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
   - And others
