@@ -16,6 +16,7 @@ a focus on rust
 - .zshrc should +nightly rustfmt
 - fix prompt info
 - vim mode for tmux
+- Figure out WHY iosevka term light italic doesnt work no matter what I do
 
 # Helpful links
 - https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim

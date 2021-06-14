@@ -18,7 +18,8 @@ return {
     },
     {
       italic = true,
-      font = font_with_fallback("Iosevka Term Light", {italic=true}),
+      font = font_with_fallback("Iosevka Term Light Oblique", {italic=true}),
+
     },
     {
       intensity = "Bold",
@@ -31,7 +32,7 @@ return {
   },
   -- Better for my monitor
   dpi = 110.0,
-  font_size = 11,
+  font_size = 16,
 
   bold_brightens_ansi_colors = true,
   font_antialias = "Subpixel",
