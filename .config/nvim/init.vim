@@ -4,7 +4,11 @@ let &packpath = &runtimepath
 source ~/.vimrc
 
 " Mouse
-set mouse=a
+" TODO: figure out how to do this without visual mode
+" set mouse=a
+" Somehow this makes scrolling work
+nmap <Down> <C-e>
+nmap <Up> <C-y>
 
 
 " Unknown

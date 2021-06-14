@@ -17,6 +17,7 @@ a focus on rust
 - fix prompt info
 - vim mode for tmux
 - Figure out WHY iosevka term light italic doesnt work no matter what I do
+- vim `mouse=a` without problems
 
 # macos gui setup hints:
 - Mouse speed
