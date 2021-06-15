@@ -18,8 +18,7 @@ return {
     },
     {
       italic = true,
-      font = font_with_fallback("Iosevka Term Light Oblique", {italic=true}),
-
+      font = font_with_fallback("Iosevka Term Light Italic"),
     },
     {
       intensity = "Bold",
@@ -30,6 +29,7 @@ return {
       font = font_with_fallback("Iosevka Term Extralight"),
     },
   },
+  font_dirs = {"/Users/azw/Library/Fonts"},
   -- Better for my monitor
   dpi = 110.0,
   font_size = 16,

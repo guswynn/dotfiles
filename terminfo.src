@@ -2,6 +2,7 @@
 # run to add to term db: tic tmux.terminfo
 tmux|tmux terminal multiplexer,
   ritm=\E[23m, rmso=\E[27m, sitm=\E[3m, smso=\E[7m, Ms@,
+  smxx=\E[9m,
   use=xterm, use=screen,
 
 tmux-256color|tmux with 256 colors,

@@ -3,6 +3,7 @@ a focus on rust
 
 ## Terminfo:
 - run `tic path/to/terminfo.src` in `$HOME`
+  - Or with `-x` if needed
 
 ## TODO:
 - document issue #2 (font usage)
@@ -16,8 +17,8 @@ a focus on rust
 - .zshrc should +nightly rustfmt
 - fix prompt info
 - vim mode for tmux
-- Figure out WHY iosevka term light italic doesnt work no matter what I do
 - vim `mouse=a` without problems
+- Figure out why `-x` is needed on `tic` sometimes
 
 # macos gui setup hints:
 - Mouse speed
