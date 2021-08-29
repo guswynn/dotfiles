@@ -123,13 +123,33 @@ set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 " No suggest on markdown
 autocmd FileType markdown let b:coc_suggest_disable = 1
 
-" Tab and Shift-Tab to go through completions
+" See https://github.com/jonhoo/configs/commit/593423096b2bd3fe6d6c65d6cc44ae9e76c89f5d
+" for more info
+" Ctrl-Tab to go through completions
 " also try shift-n thing that typically works
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+
+" c-n is how I scroll through anyways, somehow overriding this works, it
+" doesn't break scroll through?
+inoremap <silent><expr> <c-n> coc#refresh()
+" tab also starts completion
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Leader-g-d to jump to definition
 nmap <silent> gd <Plug>(coc-definition)
+
+"TODO: figure out why none of these work
+"inoremap <silent><expr> <c-space> coc#refresh()
+"inoremap <silent><expr> <c-.> coc#refresh()
+"inoremap <silent><expr> <c-@> coc#refresh()
 
 " from here: https://github.com/neoclide/coc.nvim/issues/586
 " set "coc.preferences.jumpCommand": "CocSplitIfNotOpen" if you want this,
