@@ -25,12 +25,20 @@ unsetopt CASE_GLOB
 KEYTIMEOUT=1
 zle -N newtab
 
-# Some completion configs
+# required for the following zstyles to work
+#
+# Also required when using homebrew
+# https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
+# basically, g-w the compaudit files
+autoload -Uz compinit
+compinit -z
+
+# nice selection menu
+zstyle ':completion:*' menu select
 # matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
-zstyle ':completion:*' menu select
 
 # vim mode
 set -o vi
@@ -170,9 +178,10 @@ function append {
 # cargo-installed command
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# TODO(guswynn): ls -a is like ls -A, and you need ls -aa with this, so disabling for now
 # ls and colors
-alias ls="exa"
-export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
+# alias ls="exa"
+# export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
 
 # movement
 alias code="cd ~/repos"
