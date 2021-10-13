@@ -213,3 +213,11 @@ hi SpecialComment ctermfg=DarkYellow
 
 " Markdown specific colors
 hi markdownItalic ctermbg=Yellow
+
+
+" attempt to use mouse mode
+set mouse=a
+" Kaleb says this is slightly better
+if has('mouse_sgr')
+  set ttymouse=sgr
+endif

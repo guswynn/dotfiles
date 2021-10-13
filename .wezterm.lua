@@ -69,6 +69,7 @@ return {
   -- include punctuation
   selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
   scrollback_lines = 3500,
+  audible_bell = "Disabled",
 
   -- if needed: https://wezfurlong.org/wezterm/hyperlinks.html
   -- hyperlink_rules = {
