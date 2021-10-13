@@ -91,7 +91,7 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
 
 " Fixers and Linters
-let g:ale_fixers = {'python': ['isort', 'black']}
+let g:ale_fixers = {'python': ['isort', 'black'], 'rust': ['rustfmt']}
 let g:ale_rust_rustfmt_options = "+nightly"
 let g:ale_linters = {'python': ['flake8']}
 
@@ -114,6 +114,12 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " install https://github.com/autozimu/LanguageClient-neovim/blob/next/INSTALL.md
 set runtimepath+=~/.vim-plugins/LanguageClient-neovim
 
+" rust.vim
+" let g:rustfmt_autosave = 1
+" THIS DOESNT WORK FOR SOME REASON
+" let g:rustfmt_options = '+nightly'
+" let g:rustfmt_emit_files = 1
+" let g:rustfmt_fail_silently = 0
 
 " coc.nvim
 " This is primarily for rust-analyzer

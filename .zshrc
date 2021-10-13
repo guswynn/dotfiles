@@ -41,9 +41,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 zstyle ':completion:*' insert-tab pending
 
 # vim mode
-set -o vi
+# set -o vi
 # TODO(guswynn): why is this off
-# bindkey -v
+bindkey -v
 
 # Fix some buttons
 bindkey '^[[Z' reverse-menu-complete
@@ -203,3 +203,5 @@ export PATH=$PATH:$HOME/Library/Arduino15/packages/arduino/tools/bossac/1.7.0-ar
 # ruby just to get my blog to work
 export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
+
+export RUST_BACKTRACE=1

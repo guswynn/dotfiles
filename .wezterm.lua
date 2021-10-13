@@ -68,7 +68,7 @@ return {
   -- https://wezfurlong.org/wezterm/config/lua/config/selection_word_boundary.html#selection_word_boundary
   -- include punctuation
   selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
-  asdfklajs
+  scrollback_lines = 3500,
 
   -- if needed: https://wezfurlong.org/wezterm/hyperlinks.html
   -- hyperlink_rules = {

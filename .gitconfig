@@ -11,6 +11,7 @@
   inf = show --name-only
   d = diff
   c = checkout
+  co = checkout
   up = checkout
   a = branch
   da = diff --cached
@@ -20,6 +21,7 @@
   curlog = log --oneline --first-parent HEAD
   # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
   newup = remote add upstream
+  newor = remote add origin
   # then
   # git fetch upstream
   # git rebase upstream/<main branch>
@@ -48,3 +50,6 @@
 
 [diff]
   noprefix = true
+
+[core]
+  excludesFile = ~/repos/dotfiles/.gitignore
