@@ -6,6 +6,7 @@ a focus on rust
   - Or with `-x` if needed
 
 ## TODO:
+- wezterm NATIVE multiplexing
 - document issue #2 (font usage)
 - document color usage
 - better way to link dotfiles
