@@ -1,6 +1,10 @@
 [user]
-	email = guswynn@gmail.com
 	name = Gus Wynn
+
+[includeIf "gitdir:repos/"]
+  path = .gitconfig-personal
+[includeIf "gitdir:work/"]
+  path = .gitconfig-work
   
 [alias]
   st = status
