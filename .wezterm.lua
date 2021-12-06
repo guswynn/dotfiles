@@ -29,13 +29,12 @@ return {
       font = font_with_fallback("Iosevka Term Extralight"),
     },
   },
-  font_dirs = {"/Users/azw/Library/Fonts"},
+  font_dirs = {"/Users/azw/Library/Fonts", "/Users/gus/Library/Fonts"},
   -- Better for my monitor
   dpi = 110.0,
   font_size = 16,
 
   bold_brightens_ansi_colors = true,
-  font_antialias = "Subpixel",
   -- no ligatures
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
 

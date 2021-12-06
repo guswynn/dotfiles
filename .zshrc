@@ -184,7 +184,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
 
 # movement
-alias code="cd ~/repos"
+alias code="cd ~/work || cd ~/repos"
 alias repos="cd ~/repos"
 alias rust="cd ~/repos/rust"
 alias rust2="cd ~/repos/rust2"
@@ -204,3 +204,13 @@ export PATH="/usr/local/opt/ruby@2.7/bin:$PATH"
 export PATH="$HOME/.gem/ruby/2.7.0/bin:$PATH"
 
 export RUST_BACKTRACE=1
+
+# brew on silicon macs
+export PATH="/opt/homebrew/bin:$PATH"
+
+# confluent path (cli is in `~/bin`)
+export CONFLUENT_HOME=/Users/gus/confluent
+
+# materialize
+alias mat="cd ~/work/materialize"
+alias timely="cd ~/work/timely-dataflow"
