@@ -19,10 +19,16 @@
   up = checkout
   a = branch
   da = diff --cached
-  ssl = log --graph --branches --first-parent --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
-  sl = log --graph --branches --first-parent --oneline --max-count=25
-  branchlog = log --oneline --first-parent
+  # `sl` does not use `--graph` as it just is used to quickly list the commits you have involved on your branch
+  # `ssl` shows the full graph
+  ssl = log --graph --branches --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
+  #sl-dep = log --branches --oneline --max-count=25
+  sl = slg
+  slg = log --branches --oneline --max-count=15 --graph
+  branchlog = log --oneline --first-parent --max-count=15
   curlog = log --oneline --first-parent HEAD
+
+  topull = log --oneline ..upstream/main
   # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
   newup = remote add upstream
   newor = remote add origin

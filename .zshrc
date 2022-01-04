@@ -214,3 +214,20 @@ export CONFLUENT_HOME=/Users/gus/confluent
 # materialize
 alias mat="cd ~/work/materialize"
 alias timely="cd ~/work/timely-dataflow"
+
+# Created by `pipx` on 2021-12-06 22:48:19
+export PATH="$PATH:/Users/gus/.local/bin"
+
+# git stuff
+#
+# try this out to clean up githup better
+# current notes: checkout main and pull upstream main first
+# (well, trying to have main track upstream/main to not have to do this)
+# effort 3 is because of squashed-and-merged pr's
+# you have still have to manually delete the remote branches
+alias git-dmb="git-delete-merged-branches --effort 3"
+# TODO: figure out if this can be a git alias
+alias git-show="git show HEAD...$(git merge-base HEAD main)"
+
+# cargo/rust stuff
+alias cargo-config="cargo +nightly -Zunstable-options config get"

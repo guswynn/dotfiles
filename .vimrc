@@ -195,7 +195,7 @@ command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
 colorscheme peachpuff
 
 " make search highlight look nicer
-hi Search ctermfg=Black
+hi Search ctermfg=Black guifg=Black
 hi SpellBad ctermfg=Black
 hi SpellCap ctermfg=Black
 " you may also like this
@@ -213,6 +213,16 @@ hi SpecialComment ctermfg=DarkYellow
 
 " Markdown specific colors
 hi markdownItalic ctermbg=Yellow
+
+" coc-rust-analyzer specific colors
+" TODO: figure out how to make this not match the color of the background
+hi CocFLoating ctermbg=DarkMagenta
+" do my best to make coc act consistently across computers
+" TODO: this isnt perfect
+hi FgCocHintFloatBgCocFloating ctermbg=Black ctermfg=DarkYellow
+hi FgCocErrorFloatBgCocFloating ctermbg=Black ctermfg=Red
+" TODO: when it first lints, it seems to change colors, i need to look into
+" that
 
 
 " attempt to use mouse mode
