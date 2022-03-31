@@ -63,38 +63,12 @@ cwd () {
 }
 
 # just prompt stuff
-# hg prompt (TODO(guswynn): git
-function extra_prompt_info {
-  local d hg fmt
-  fmt="(%s)"
-  d=$PWD
-  while : ; do
-      if test -d "$d/.hg" ; then
-          hg=$d
-          break
-      fi
-      test "$d" = / && break
-      d=$(cd -P "$d/.." && echo "$PWD")
-  done
-
-  local dirstate=$(
-      test -f "$hg/.hg/dirstate" && \
-      cat "$hg/.hg/dirstate" | \
-      hexdump -vn 20 -e '1/1 "%02x"' || \
-      echo "empty"\
-  )
-  if [ "$dirstate" = "empty" ]; then
-      return
-  fi
-  local current="$hg/.hg/bookmarks.current"
-  if  [[ -f "$current" ]]; then
-      br=$(cat "$current")
-  else
-      br=$(echo $dirstate | cut -c 1-7)
-  fi
-  if [ -n "$br" ]; then
-      printf "$fmt" "$br"
-  fi
+autoload -Uz vcs_info
+zstyle ':vcs_info:git*:*' get-revision true
+zstyle ':vcs_info:git*' formats "%b (%12.12i)"
+# zstyle ':vcs_info:git*' branchformat "%b:%i"
+precmd() {
+    vcs_info
 }
 
 # Get the mode for vi mode
@@ -108,7 +82,7 @@ function vi_mode() {
 	fi
 }
 
-PROMPT='%{$fg[magenta]%}%n@mac %{$fg[green]%}Helping %{$fg[blue]%}$(cwd) %{$fg[yellow]%} $(extra_prompt_info)
+PROMPT='%{$fg[magenta]%}%n@mac %{$fg[green]%}Helping %{$fg[blue]%}$(cwd) %{$fg[yellow]%} ${vcs_info_msg_0_}
 %{$fg[cyan]%}%D{%F} %* $(vi_mode) > %{$reset_color%}'
 
 # reset prompt in vi mode
@@ -155,13 +129,6 @@ alias ack="echo use ag you dum dum"
 alias ag="echo use rg you dum dum"
 
 # pipe utils
-alias H="awk '{print \$2}'"
-alias C1="awk '{print \$1}'"
-alias C2="awk '{print \$2}'"
-alias C3="awk '{print \$3}'"
-alias C4="awk '{print \$4}'"
-alias C5="awk '{print \$4}'"
-# Get text before and after a substring
 function after {
     perl -pe "s|.*?$1||"
 }
@@ -184,7 +151,10 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # export EXA_COLORS="di=34:dotfiles=32:config_stuff=32"
 
 # movement
-alias code="cd ~/work || cd ~/repos"
+code() {
+  cd ~/work || cd ~/repos
+}
+
 alias repos="cd ~/repos"
 alias rust="cd ~/repos/rust"
 alias rust2="cd ~/repos/rust2"
@@ -213,6 +183,7 @@ export CONFLUENT_HOME=/Users/gus/confluent
 
 # materialize
 alias mat="cd ~/work/materialize"
+alias mattest="cd ~/work/materialize/test/testdrive"
 alias timely="cd ~/work/timely-dataflow"
 
 # Created by `pipx` on 2021-12-06 22:48:19
@@ -227,7 +198,25 @@ export PATH="$PATH:/Users/gus/.local/bin"
 # you have still have to manually delete the remote branches
 alias git-dmb="git-delete-merged-branches --effort 3"
 # TODO: figure out if this can be a git alias
-alias git-show="git show HEAD...$(git merge-base HEAD main)"
+# git-shows () {
+#  git show HEAD...$(git merge-base HEAD main)
+# }
+# for git-fixup
+export GIT_INSTAFIX_UPSTREAM=main
+export GIT_INSTAFIX_REQUIRE_NEWLINE=y
+rebaserino () {
+  git rebase -i `git merge-base HEAD main`
+}
 
 # cargo/rust stuff
 alias cargo-config="cargo +nightly -Zunstable-options config get"
+
+
+replacerino() {
+  rg $1 -l | xargs -I{} sed -i '' "s/$1/$2/g" {}
+}
+deleterino() {
+  rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
+}
+
+alias dmb-all="git up main && git pull && git push origin main && git-dmb"

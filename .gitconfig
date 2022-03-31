@@ -8,6 +8,7 @@
   
 [alias]
   st = status
+  br = branch -vv
   staged = diff --staged
   ds = diff --staged
   s = status
@@ -16,17 +17,25 @@
   d = diff
   c = checkout
   co = checkout
-  up = checkout
+  up = switch
   a = branch
   da = diff --cached
-  # `sl` does not use `--graph` as it just is used to quickly list the commits you have involved on your branch
-  # `ssl` shows the full graph
+
+  # mine
   ssl = log --graph --branches --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
-  #sl-dep = log --branches --oneline --max-count=25
   sl = slg
   slg = log --branches --oneline --max-count=15 --graph
-  branchlog = log --oneline --first-parent --max-count=15
+  branchlog = log --oneline --graph --max-count=15
   curlog = log --oneline --first-parent HEAD
+
+  # From Brandon, to try
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=iso
+  lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches=* --remotes=*
+  lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15
+  lgsa = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --branches=* --remotes=*
+
+  # the good stuff
+  tree = lga --simplify-by-decoration --decorate-refs-exclude='refs/pullreqs/*' --decorate-refs-exclude='refs/tags/*' --decorate-refs-exclude='refs/remotes/*/*'
 
   topull = log --oneline ..upstream/main
   # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
@@ -54,6 +63,22 @@
   # git remote prune origin (not sure on this one)
   # git branch -r --merged
   # git push origin --delete <branch name>
+  
+  # Some nice shorthands
+  quickamend = commit -a --amend --no-edit
+  pwf = push --force-with-lease
+
+  # undo to staged:
+  #
+  #git restore --source=HEAD^ --staged -- file
+  #then commit --amend
+  #
+  #look into git switch
+  #
+  #git dmb alternative??
+  #https://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged/6127884#6127884
+  #
+  #other people: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/checking-out-pull-requests-locally
 
 [init]
   defaultBranch = main
@@ -63,3 +88,5 @@
 
 [core]
   excludesFile = ~/repos/dotfiles/.gitignore
+[merge]
+	conflictstyle = diff3

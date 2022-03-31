@@ -3,5 +3,6 @@
   "rust-analyzer.cargo.allFeatures": true,
   "coc.preferences.formatOnSaveFiletypes": [],
   "diagnostic.checkCurrentLine": true,
-  "coc.preferences.jumpCommand": "vsplit"
+  "coc.preferences.jumpCommand": "vsplit",
+  "coc.preferences.extensionUpdateCheck": "weekly"
 }

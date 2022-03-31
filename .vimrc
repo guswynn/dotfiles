@@ -95,6 +95,11 @@ let g:ale_fixers = {'python': ['isort', 'black'], 'rust': ['rustfmt']}
 let g:ale_rust_rustfmt_options = "+nightly"
 let g:ale_linters = {'python': ['flake8']}
 
+let g:ale_pattern_options = {
+\   'timely-dataflow.*': {'ale_fixers': {}},
+\   'differential-dataflow.*': {'ale_fixers': {}},
+\}
+
 " python
 let g:ale_python_autopep8_use_global=1
 let g:ale_python_flake8_use_global=1
@@ -223,6 +228,12 @@ hi FgCocHintFloatBgCocFloating ctermbg=Black ctermfg=DarkYellow
 hi FgCocErrorFloatBgCocFloating ctermbg=Black ctermfg=Red
 " TODO: when it first lints, it seems to change colors, i need to look into
 " that
+"
+"Remember, Yellow is light grey in my color scheme
+let g:indentLine_color_term='Yellow'
+let g:markdown_syntax_conceal=0
+let g:vim_json_conceal=0
+
 
 
 " attempt to use mouse mode
