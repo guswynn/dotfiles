@@ -205,7 +205,7 @@ alias git-dmb="git-delete-merged-branches --effort 3"
 export GIT_INSTAFIX_UPSTREAM=main
 export GIT_INSTAFIX_REQUIRE_NEWLINE=y
 rebaserino () {
-  git rebase -i `git merge-base HEAD main`
+  git rebase -i `git merge-base HEAD ${1:-main}`
 }
 
 # cargo/rust stuff
@@ -219,4 +219,11 @@ deleterino() {
   rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
 }
 
-alias dmb-all="git up main && git pull && git push origin main && git-dmb"
+alias dmb-all="git up main && git pull && git push origin main && git-dmb --yes"
+alias git-refresh="git up main && git pull && git push origin main"
+
+
+# sadness, i need to move off of jekyll
+# source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+# source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+# chruby ruby-3.1.2

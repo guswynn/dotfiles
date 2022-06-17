@@ -93,6 +93,7 @@ let g:ale_lint_on_enter = 1
 " Fixers and Linters
 let g:ale_fixers = {'python': ['isort', 'black'], 'rust': ['rustfmt']}
 let g:ale_rust_rustfmt_options = "+nightly"
+let g:ale_rust_rustfmt_options = '--edition 2021'
 let g:ale_linters = {'python': ['flake8']}
 
 let g:ale_pattern_options = {
@@ -221,16 +222,17 @@ hi markdownItalic ctermbg=Yellow
 
 " coc-rust-analyzer specific colors
 " TODO: figure out how to make this not match the color of the background
-hi CocFLoating ctermbg=DarkMagenta
+hi CocFLoating ctermbg=DarkGray
 " do my best to make coc act consistently across computers
 " TODO: this isnt perfect
-hi FgCocHintFloatBgCocFloating ctermbg=Black ctermfg=DarkYellow
-hi FgCocErrorFloatBgCocFloating ctermbg=Black ctermfg=Red
+"hi FgCocHintFloatBgCocFloating ctermbg=Black ctermfg=DarkYellow
+"hi FgCocErrorFloatBgCocFloating ctermbg=Black ctermfg=Red
+hi CocRustTypeHint ctermfg=DarkGray
 " TODO: when it first lints, it seems to change colors, i need to look into
 " that
 "
 "Remember, Yellow is light grey in my color scheme
-let g:indentLine_color_term='Yellow'
+let g:indentLine_color_term='DarkGray'
 let g:markdown_syntax_conceal=0
 let g:vim_json_conceal=0
 
