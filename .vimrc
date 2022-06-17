@@ -72,24 +72,19 @@ imap <right> <nop>
 
 " ALE
 " Currently I just have ALE for python and clang formatting, but they may be
-" broken
+" broken, and I use it for FAST rust formatting
 
 " how it shoes up
 let g:ale_echo_msg_format = '[%linter%] %s'
-" let g:ale_hover_to_preview = 1
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
 " only in NeoVim, cancels out the message at the bottom
-" let g:ale_virtualtext_cursor = 1
-" let g:ale_cursor_detail = 1
 let g:ale_close_preview_on_insert = 1
 let g:ale_set_balloons = 1
-
 " when it shows up
 let g:ale_fix_on_save = 1
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 1
-
 " Fixers and Linters
 let g:ale_fixers = {'python': ['isort', 'black'], 'rust': ['rustfmt']}
 let g:ale_rust_rustfmt_options = "+nightly"
@@ -100,7 +95,6 @@ let g:ale_pattern_options = {
 \   'timely-dataflow.*': {'ale_fixers': {}},
 \   'differential-dataflow.*': {'ale_fixers': {}},
 \}
-
 " python
 let g:ale_python_autopep8_use_global=1
 let g:ale_python_flake8_use_global=1
@@ -110,7 +104,6 @@ let g:ale_python_mypy_options='--ignore-missing-imports'
 let g:ale_python_pycodestyle_use_global=1
 let g:ale_python_pylint_use_global=1
 let g:ale_python_yapf_use_global=1
-
 " Easy movement between lint warnings and errors
 nmap <silent> <C-k> <Plug>(ale_previous_wrap)
 nmap <silent> <C-j> <Plug>(ale_next_wrap)
@@ -119,13 +112,6 @@ nmap <silent> <C-j> <Plug>(ale_next_wrap)
 " Language server support
 " install https://github.com/autozimu/LanguageClient-neovim/blob/next/INSTALL.md
 set runtimepath+=~/.vim-plugins/LanguageClient-neovim
-
-" rust.vim
-" let g:rustfmt_autosave = 1
-" THIS DOESNT WORK FOR SOME REASON
-" let g:rustfmt_options = '+nightly'
-" let g:rustfmt_emit_files = 1
-" let g:rustfmt_fail_silently = 0
 
 " coc.nvim
 " This is primarily for rust-analyzer
@@ -158,11 +144,6 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Leader-g-d to jump to definition
 nmap <silent> gd <Plug>(coc-definition)
 
-"TODO: figure out why none of these work
-"inoremap <silent><expr> <c-space> coc#refresh()
-"inoremap <silent><expr> <c-.> coc#refresh()
-"inoremap <silent><expr> <c-@> coc#refresh()
-
 " from here: https://github.com/neoclide/coc.nvim/issues/586
 " set "coc.preferences.jumpCommand": "CocSplitIfNotOpen" if you want this,
 " currently disabled
@@ -187,58 +168,39 @@ function! SplitIfNotOpen(...)
 endfunction
 command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
 
-
 " TODO: try out neovim's builtin support for LSP's, following 
 " https://github.com/jonhoo/configs/commit/593423096b2bd3fe6d6c65d6cc44ae9e76c89f5d
 
 
-" COLORS
-
-" install vim colors here here: https://vi.stackexchange.com/questions/14587/which-directory-to-put-color-schemes
-" TODO: add a nice colorscheme
-"
-" Term colors: https://github.com/martinlindhe/base16-iterm2
-colorscheme peachpuff
+" Colors
+" Using `LiquidCarbonTransparent` in wezterm
+colorscheme torte
 
 " make search highlight look nicer
-hi Search ctermfg=Black guifg=Black
+hi Search ctermfg=Black ctermbg=Yellow guifg=Black
 hi SpellBad ctermfg=Black
 hi SpellCap ctermfg=Black
-" you may also like this
-" https://github.com/chriskempson/base16-vim 
-" colorscheme base16-default-dark
-"
 
 " Rust specific color overrides
+hi rustInvalidBareKeyword ctermbg=Black ctermfg=DarkRed
 
-hi rustInvalidBareKeyword ctermbg=Black ctermfg=darkred
-" rust doc comments. DarkYellow is nice (maybe) too but doesnt correspond with a
-" iterm2 colorscheme, Red is bright red in iterm2
-" hi SpecialComment ctermfg=Red
-hi SpecialComment ctermfg=DarkYellow
+" coc-rust-analyzer specific colors
+hi CocFLoating ctermbg=DarkGray
+hi CocRustTypeHint ctermfg=DarkGray
+
+hi String ctermfg=Red
 
 " Markdown specific colors
 hi markdownItalic ctermbg=Yellow
 
-" coc-rust-analyzer specific colors
-" TODO: figure out how to make this not match the color of the background
-hi CocFLoating ctermbg=DarkGray
-" do my best to make coc act consistently across computers
-" TODO: this isnt perfect
-"hi FgCocHintFloatBgCocFloating ctermbg=Black ctermfg=DarkYellow
-"hi FgCocErrorFloatBgCocFloating ctermbg=Black ctermfg=Red
-hi CocRustTypeHint ctermfg=DarkGray
-" TODO: when it first lints, it seems to change colors, i need to look into
-" that
-"
-"Remember, Yellow is light grey in my color scheme
+
+" Config and color for indentline
 let g:indentLine_color_term='DarkGray'
 let g:markdown_syntax_conceal=0
 let g:vim_json_conceal=0
 
 
-
-" attempt to use mouse mode
+" Mouse mode
 set mouse=a
 " Kaleb says this is slightly better
 if has('mouse_sgr')
