@@ -44,7 +44,7 @@ return {
   -- color_scheme = "synthwave",
   -- color_scheme = "Harper",
   color_scheme = "LiquidCarbonTransparent",
-  --vcolor_scheme = "Belafonte Day",
+  -- color_scheme = "Belafonte Day",
 
   -- Middle mouse button pastes the primary selection.
   mouse_bindings = {

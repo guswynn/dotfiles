@@ -126,15 +126,6 @@ autocmd FileType markdown let b:coc_suggest_disable = 1
 " Ctrl-Tab to go through completions
 " also try shift-n thing that typically works
 
-" c-n is how I scroll through anyways, somehow overriding this works, it
-" doesn't break scroll through?
-inoremap <silent><expr> <c-n> coc#refresh()
-" tab also starts completion
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
@@ -187,11 +178,12 @@ hi rustInvalidBareKeyword ctermbg=Black ctermfg=DarkRed
 " coc-rust-analyzer specific colors
 hi CocFLoating ctermbg=DarkGray
 hi CocRustTypeHint ctermfg=DarkGray
+hi CocHintSign ctermfg=DarkGray
 
 hi String ctermfg=Red
 
 " Markdown specific colors
-hi markdownItalic ctermbg=Yellow
+hi markdownItalic ctermbg=Yellow ctermfg=Black
 
 
 " Config and color for indentline
@@ -206,3 +198,5 @@ set mouse=a
 if has('mouse_sgr')
   set ttymouse=sgr
 endif
+
+set spell spelllang=en_us

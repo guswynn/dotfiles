@@ -215,6 +215,9 @@ alias cargo-config="cargo +nightly -Zunstable-options config get"
 replacerino() {
   rg $1 -l | xargs -I{} sed -i '' "s/$1/$2/g" {}
 }
+replacerinofile() {
+  sed -i '' "s/$1/$2/g" $3
+}
 deleterino() {
   rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
 }
@@ -227,3 +230,4 @@ alias git-refresh="git up main && git pull && git push origin main"
 # source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 # source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 # chruby ruby-3.1.2
+export PATH="/opt/homebrew/opt/kubernetes-cli@1.22/bin:$PATH"

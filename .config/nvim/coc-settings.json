@@ -1,8 +1,14 @@
 {
-  "rust-analyzer.rustfmt.extraArgs": ["+nightly"],
+  "rust-analyzer.enable": true,
+  "rust-analyzer.inlayHints.enable": true,
+  "rust-analyzer.inlayHints.closureReturnTypeHints.enable": true,
+  "rust-analyzer.inlayHints.bindingModeHints.enable": true, 
+  "rust-analyzer.inlayHints.parameterHints.enable": false,
   "rust-analyzer.cargo.allFeatures": true,
+  "rust-analyzer.disableProgressNotifications": true,
   "coc.preferences.formatOnSaveFiletypes": [],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.jumpCommand": "vsplit",
-  "coc.preferences.extensionUpdateCheck": "weekly"
+  "coc.preferences.extensionUpdateCheck": "weekly",
+  "suggest.noselect": true
 }

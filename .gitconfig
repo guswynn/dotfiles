@@ -68,6 +68,10 @@
   quickamend = commit -a --amend --no-edit
   pwf = push --force-with-lease
 
+  publish = "!git push -u origin $(git branch --show-current)"
+  refresh = "!git up main && git pull && git push origin main"
+  dmb = "!git-delete-merged-branches --effort 3"
+
   # undo to staged:
   #
   #git restore --source=HEAD^ --staged -- file
