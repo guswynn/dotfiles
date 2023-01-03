@@ -134,6 +134,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Leader-g-d to jump to definition
 nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
 
 " from here: https://github.com/neoclide/coc.nvim/issues/586
 " set "coc.preferences.jumpCommand": "CocSplitIfNotOpen" if you want this,

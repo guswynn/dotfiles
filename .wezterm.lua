@@ -32,7 +32,7 @@ return {
   font_dirs = {"/Users/azw/Library/Fonts", "/Users/gus/Library/Fonts"},
   -- Better for my monitor
   dpi = 110.0,
-  font_size = 16,
+  font_size = 18,
 
   bold_brightens_ansi_colors = true,
   -- no ligatures

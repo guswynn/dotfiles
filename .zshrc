@@ -196,7 +196,7 @@ export PATH="$PATH:/Users/gus/.local/bin"
 # (well, trying to have main track upstream/main to not have to do this)
 # effort 3 is because of squashed-and-merged pr's
 # you have still have to manually delete the remote branches
-alias git-dmb="git-delete-merged-branches --effort 3"
+#alias git-dmb="git-delete-merged-branches --effort 3"
 # TODO: figure out if this can be a git alias
 # git-shows () {
 #  git show HEAD...$(git merge-base HEAD main)
@@ -223,7 +223,7 @@ deleterino() {
 }
 
 alias dmb-all="git up main && git pull && git push origin main && git-dmb --yes"
-alias git-refresh="git up main && git pull && git push origin main"
+# alias git-refresh="git up main && git pull && git push origin main"
 
 
 # sadness, i need to move off of jekyll
@@ -231,3 +231,6 @@ alias git-refresh="git up main && git pull && git push origin main"
 # source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 # chruby ruby-3.1.2
 export PATH="/opt/homebrew/opt/kubernetes-cli@1.22/bin:$PATH"
+
+# add Pulumi to the PATH
+export PATH=$PATH:$HOME/.pulumi/bin

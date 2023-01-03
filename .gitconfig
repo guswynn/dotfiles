@@ -95,3 +95,7 @@
   excludesFile = ~/repos/dotfiles/.gitignore
 [merge]
 	conflictstyle = diff3
+[submodule]
+	recurse = true
+[rebase]
+  # updateRefs = true
