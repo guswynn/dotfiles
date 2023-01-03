@@ -8,7 +8,7 @@ function font_with_fallback(name, params)
 end
 
 return {
-  -- Iosevka font
+  -- Iosevka font, with very explicit sub-fonts to deal with previous bugs.
   font = font_with_fallback("Iosevka Term Light"),
   font_rules = {
     {
@@ -29,22 +29,26 @@ return {
       font = font_with_fallback("Iosevka Term Extralight"),
     },
   },
+  bold_brightens_ansi_colors = true,
+  -- both my normal usernames
   font_dirs = {"/Users/azw/Library/Fonts", "/Users/gus/Library/Fonts"},
-  -- Better for my monitor
+
+  -- Good defaults for my monitor(s), before I zoom in and out.
   dpi = 110.0,
   font_size = 18,
 
-  bold_brightens_ansi_colors = true,
   -- no ligatures
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
 
+  -- Looks good with vim's `koehler`
+  color_scheme = "LiquidCarbonTransparent",
+  -- other ones I have tried...
+  -- color_scheme = "Belafonte Day",
   -- color_scheme = "Galizur",
   -- color_scheme = "Wryan",
   -- color_scheme = "UnderTheSea",
   -- color_scheme = "synthwave",
   -- color_scheme = "Harper",
-  color_scheme = "LiquidCarbonTransparent",
-  -- color_scheme = "Belafonte Day",
 
   -- Middle mouse button pastes the primary selection.
   mouse_bindings = {
@@ -70,8 +74,4 @@ return {
   selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
   scrollback_lines = 3500,
   audible_bell = "Disabled",
-
-  -- if needed: https://wezfurlong.org/wezterm/hyperlinks.html
-  -- hyperlink_rules = {
-  -- },
 }

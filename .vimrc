@@ -168,32 +168,29 @@ command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
 
 " Colors
 " Using `LiquidCarbonTransparent` in wezterm
-colorscheme torte
+colorscheme koehler
 
-" make search highlight look nicer
-hi Search ctermfg=Black ctermbg=Yellow guifg=Black
-hi SpellBad ctermfg=Black
-hi SpellCap ctermfg=Black
-
+" Make strings looks better
+hi String ctermfg=Red
 " Rust specific color overrides
 hi rustInvalidBareKeyword ctermbg=Black ctermfg=DarkRed
-
-" coc-rust-analyzer specific colors
+" coc-rust-analyzer hover specific colors
 hi CocFLoating ctermbg=DarkGray
 hi CocRustTypeHint ctermfg=DarkGray
 hi CocHintSign ctermfg=DarkGray
-
-hi String ctermfg=Red
-
 " Markdown specific colors
 hi markdownItalic ctermbg=Yellow ctermfg=Black
+" No longer relevant
+" make search highlight look nicer
+"hi Search ctermfg=Black ctermbg=Yellow guifg=Black
+"hi SpellBad ctermfg=Black
+"hi SpellCap ctermfg=Black
 
 
 " Config and color for indentline
 let g:indentLine_color_term='DarkGray'
 let g:markdown_syntax_conceal=0
 let g:vim_json_conceal=0
-
 
 " Mouse mode
 set mouse=a
@@ -203,3 +200,5 @@ if has('mouse_sgr')
 endif
 
 set spell spelllang=en_us
+"Turn off the capitalization check
+set spellcapcheck=
