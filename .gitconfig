@@ -3,6 +3,8 @@
 
 [includeIf "gitdir:repos/"]
   path = .gitconfig-personal
+[includeIf "gitdir:photography/"]
+  path = .gitconfig-personal
 [includeIf "gitdir:work/"]
   path = .gitconfig-work
   
