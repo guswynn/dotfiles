@@ -142,6 +142,8 @@ function append {
     sed "s|$|$1|"
 }
 
+alias stripcolors="sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g'"
+
 # cargo-installed command
 export PATH="$HOME/.cargo/bin:$PATH"
 

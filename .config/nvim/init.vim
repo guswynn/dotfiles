@@ -11,5 +11,6 @@ nmap <Down> <C-e>
 nmap <Up> <C-y>
 
 
-" Unknown
+" Turn off blinking
 set guicursor=
+set guicursor+=a:blinkon0

@@ -6,6 +6,9 @@
   "rust-analyzer.inlayHints.parameterHints.enable": false,
   "rust-analyzer.cargo.allFeatures": true,
   "rust-analyzer.disableProgressNotifications": true,
+  "rust-analyzer.checkOnSave.extraArgs": [
+    "--target-dir=target-ra"
+  ],
   "coc.preferences.formatOnSaveFiletypes": [],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.jumpCommand": "vsplit",

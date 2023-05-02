@@ -199,6 +199,10 @@ if has('mouse_sgr')
   set ttymouse=sgr
 endif
 
+set guicursor+=a:blinkon0
+
 set spell spelllang=en_us
 "Turn off the capitalization check
 set spellcapcheck=
+
+set undofile

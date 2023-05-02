@@ -6,6 +6,8 @@
 # FOR DEBUGGING
 # paths = ["work/rust-postgres", "work/ssh-rs", "work/tokio-openssl"]
 # paths = ["work/rust-openssl", "work/rust-postgres"]
+# paths = ["work/openssh"]
 # better for macos
+
 [profile.dev]
   split-debuginfo = "unpacked"

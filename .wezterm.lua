@@ -35,7 +35,7 @@ return {
 
   -- Good defaults for my monitor(s), before I zoom in and out.
   dpi = 110.0,
-  font_size = 18,
+  font_size = 20,
 
   -- no ligatures
   harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
@@ -74,4 +74,6 @@ return {
   selection_word_boundary = " \t\n{}[]()\"'`,;:|│",
   scrollback_lines = 3500,
   audible_bell = "Disabled",
+
+  front_end = "WebGpu",
 }
