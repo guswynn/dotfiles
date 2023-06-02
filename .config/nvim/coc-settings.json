@@ -9,9 +9,9 @@
   "rust-analyzer.checkOnSave.extraArgs": [
     "--target-dir=target-ra"
   ],
+  "rust-analyzer.completion.autoimport.enable": true,
   "coc.preferences.formatOnSaveFiletypes": [],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.jumpCommand": "vsplit",
-  "coc.preferences.extensionUpdateCheck": "weekly",
-  "suggest.noselect": true
+  "coc.preferences.extensionUpdateCheck": "weekly"
 }

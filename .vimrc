@@ -178,6 +178,7 @@ hi rustInvalidBareKeyword ctermbg=Black ctermfg=DarkRed
 hi CocFLoating ctermbg=DarkGray
 hi CocRustTypeHint ctermfg=DarkGray
 hi CocHintSign ctermfg=DarkGray
+hi CocMenuSel ctermbg=Yellow
 " Markdown specific colors
 hi markdownItalic ctermbg=Yellow ctermfg=Black
 " No longer relevant
@@ -206,3 +207,5 @@ set spell spelllang=en_us
 set spellcapcheck=
 
 set undofile
+
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
