@@ -232,7 +232,18 @@ alias dmb-all="git up main && git pull && git push origin main && git-dmb --yes"
 # source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 # source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 # chruby ruby-3.1.2
+
+
 export PATH="/opt/homebrew/opt/kubernetes-cli@1.22/bin:$PATH"
 
 # add Pulumi to the PATH
 export PATH=$PATH:$HOME/.pulumi/bin
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+export PATH="$HOME/go:$PATH"
+
+# go for karpenter and stuff
+export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
+
+# branchless
+alias git='git-branchless wrap --'

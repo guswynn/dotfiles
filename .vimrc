@@ -209,3 +209,6 @@ set spellcapcheck=
 set undofile
 
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+
+" Show tabs and trailing spaces.
+set list

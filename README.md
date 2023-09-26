@@ -30,3 +30,9 @@ a focus on rust
 # Helpful links
 - https://github.com/jonhoo/configs/blob/master/editor/.config/nvim/init.vim
   - And others
+
+# Things to install
+- brew
+- wezterm
+- maccy
+- git branchless

@@ -10,7 +10,7 @@
     "--target-dir=target-ra"
   ],
   "rust-analyzer.completion.autoimport.enable": true,
-  "coc.preferences.formatOnSaveFiletypes": [],
+  "coc.preferences.formatOnSaveFiletypes": ["typescript", "typescriptreact"],
   "diagnostic.checkCurrentLine": true,
   "coc.preferences.jumpCommand": "vsplit",
   "coc.preferences.extensionUpdateCheck": "weekly"
