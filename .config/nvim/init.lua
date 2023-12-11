@@ -1,6 +1,7 @@
+-- Derived from https://github.com/nvim-lua/kickstart.nvim
+
+
 -- Set <space> as the leader key
--- See `:help mapleader`
---  NOTE: Must happen before plugins are required (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
@@ -14,9 +15,8 @@ vim.cmd.hi 'IblScope guifg=DarkGray'
 vim.cmd.hi 'IblIndent guifg=DarkGray'
 
 
--- [[ Install `lazy.nvim` plugin manager ]]
---    https://github.com/folke/lazy.nvim
---    `:help lazy.nvim.txt` for more info
+-- https://github.com/folke/lazy.nvim package manager
+-- `:help lazy.nvim.txt`
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system {
@@ -31,10 +31,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 
--- [[ Configure plugins ]]
+-- Configure plugins
 require('lazy').setup({
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -66,9 +64,8 @@ require('lazy').setup({
   },
 
   {
-    -- Set lualine as statusline
-    'nvim-lualine/lualine.nvim',
-    -- See `:help lualine.txt`
+    -- lualine as statusline
+    -- `:help lualine.txt`
     opts = {
       options = {
         icons_enabled = false,
@@ -82,8 +79,7 @@ require('lazy').setup({
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help ibl`
+    -- `:help ibl`
     main = 'ibl',
     opts = {
       scope = {
@@ -131,8 +127,8 @@ require('lazy').setup({
 
 }, {})
 
--- [[ Setting options ]]
---
+-- General vim settings
+
 -- Set highlight on search
 vim.o.hlsearch = false
 
@@ -148,7 +144,7 @@ vim.o.mouse = 'a'
 -- Sync clipboard between OS and Neovim.
 --  Remove this option if you want your OS clipboard to remain independent.
 --  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
+-- vim.o.clipboard = 'unnamedplus'
 
 -- Enable break indent
 vim.o.breakindent = true
@@ -157,8 +153,8 @@ vim.o.breakindent = true
 vim.o.undofile = true
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+-- vim.o.ignorecase = true
+-- vim.o.smartcase = true
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
@@ -195,10 +191,11 @@ vim.o.spellcapcheck = ""
 -- Block cursor only
 vim.opt.guicursor = 'a:blinkon0'
 
--- [[ Basic Keymaps ]]
+
+-- general keymaps
 
 -- Keymaps for better default experience
--- See `:help vim.keymap.set()`
+-- `:help vim.keymap.set()`
 -- TODO(guswynn): do I need this
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 
@@ -214,8 +211,9 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnos
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
--- [[ Configure Telescope ]]
--- See `:help telescope` and `:help telescope.setup()`
+
+-- configure telescope
+-- `:help telescope` and `:help telescope.setup()`
 local actions = require 'telescope.actions'
 require('telescope').setup {
   defaults = {
@@ -306,9 +304,12 @@ vim.keymap.set('n', '<leader>sG', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
--- [[ Configure Treesitter ]]
--- See `:help nvim-treesitter`
+
+-- configure treesitter
+-- `:help nvim-treesitter`
+--
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
+--
 -- TODO(guswynn): do I need this
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
@@ -376,7 +377,8 @@ vim.defer_fn(function()
   }
 end, 0)
 
--- [[ Configure LSP ]]
+
+-- Configure LSP
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
@@ -478,8 +480,9 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
--- [[ Configure nvim-cmp ]]
--- See `:help cmp`
+
+-- configure nvim-cmp
+-- `:help cmp`
 -- TODO(guswynn): do I need this
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
