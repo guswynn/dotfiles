@@ -44,6 +44,14 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
+
+vim.cmd.colorscheme 'koehler'
+vim.cmd.hi 'IblScope guifg=DarkGray'
+vim.cmd.hi 'IblIndent guifg=DarkGray'
+
+
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    https://github.com/folke/lazy.nvim
 --    `:help lazy.nvim.txt` for more info
@@ -60,10 +68,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-vim.cmd.colorscheme 'koehler'
-vim.cmd.hi 'IblScope ctermfg=DarkGray'
-vim.cmd.hi 'IblIndent ctermfg=DarkGray'
 
 -- [[ Configure plugins ]]
 -- NOTE: Here is where you install your plugins.
@@ -100,8 +104,6 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-
-      -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
     },
   },
@@ -131,7 +133,7 @@ require('lazy').setup({
         show_start = false,
       },
       indent = {
-        char = "¦";
+        char = "¦",
       }
     },
   },
@@ -224,9 +226,6 @@ vim.o.completeopt = 'menuone,noselect'
 
 vim.opt.guicursor = 'a:blinkon0'
 
--- NOTE: You should make sure your terminal supports this
--- vim.o.termguicolors = true
-
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
@@ -248,8 +247,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 local actions = require 'telescope.actions'
 require('telescope').setup {
   defaults = {
+    colorscheme = "koehler",
     mappings = {
       i = {
+        ['<CR>'] = actions.select_vertical,
         ['<esc>'] = actions.close,
         ['<C-g>'] = actions.close,
         ['<C-j>'] = actions.move_selection_next,
@@ -317,14 +318,17 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
+
+-- core search functionality
+vim.keymap.set('n', '<leader>sg', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+-- lesser used ones
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
 vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
-vim.keymap.set('n', '<leader>sG', ':LiveGrepGitRoot<cr>', { desc = '[S]earch by [G]rep on Git Root' })
+vim.keymap.set('n', '<leader>sG', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
@@ -339,7 +343,7 @@ vim.defer_fn(function()
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
 
-    highlight = { enable = true },
+    highlight = { enable = false },
     indent = { enable = true },
     incremental_selection = {
       enable = true,
@@ -399,7 +403,8 @@ end, 0)
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+  client.server_capabilities.semanticTokensProvider = nil
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
   -- many times.
@@ -417,9 +422,12 @@ local on_attach = function(_, bufnr)
   nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
-  nmap('gd', function () require('telescope.builtin').lsp_definitions({jump_type="vsplit"}) end, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
+  -- core
+  nmap('<leader>gd', function() require('telescope.builtin').lsp_definitions({ jump_type = "vsplit" }) end,
+    '[G]oto [D]efinition')
+  nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  -- other
+  nmap('<leader>gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -429,7 +437,7 @@ local on_attach = function(_, bufnr)
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
-  nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
+  nmap('<leader>gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
   nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
   nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
   nmap('<leader>wl', function()
@@ -443,15 +451,14 @@ local on_attach = function(_, bufnr)
 
   vim.api.nvim_create_augroup("AutoFormat", {})
   vim.api.nvim_create_autocmd(
-      "BufWritePre",
-      {
-          group = "AutoFormat",
-          callback = function()
-            vim.lsp.buf.format()
-          end,
-      }
+    "BufWritePre",
+    {
+      group = "AutoFormat",
+      callback = function()
+        vim.lsp.buf.format()
+      end,
+    }
   )
-
 end
 
 -- mason-lspconfig requires that these setup functions are called in this order
@@ -560,4 +567,3 @@ cmp.setup {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
-
