@@ -247,3 +247,8 @@ export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
 
 # branchless
 alias git='git-branchless wrap --'
+
+# work-specific
+if test -f ~/.zshrc-work; then
+  source ~/.zshrc-work
+fi
