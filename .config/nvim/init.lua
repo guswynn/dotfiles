@@ -66,6 +66,7 @@ require('lazy').setup({
   {
     -- lualine as statusline
     -- `:help lualine.txt`
+    'nvim-lualine/lualine.nvim',
     opts = {
       options = {
         icons_enabled = false,
