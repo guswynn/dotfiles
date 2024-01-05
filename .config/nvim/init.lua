@@ -192,6 +192,9 @@ vim.o.spellcapcheck = ""
 -- Block cursor only
 vim.opt.guicursor = 'a:blinkon0'
 
+-- I don't like wrapping
+vim.o.wrap = false
+
 
 -- general keymaps
 
@@ -447,7 +450,13 @@ require('mason-lspconfig').setup()
 
 -- Enable the following language servers
 local servers = {
-  rust_analyzer = {},
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      rust = {
+        analyzerTargetDir = "target-ra"
+      }
+    }
+  },
 
   -- only for this file lol
   lua_ls = {
@@ -531,5 +540,17 @@ cmp.setup {
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
+  },
+}
+
+require('lualine').setup {
+  options = {
+    icons_enabled = false,
+    theme = 'auto',
+    component_separators = '|',
+    section_separators = '',
+  },
+  sections = {
+    lualine_c = { { 'filename', path = 3 } },
   },
 }
