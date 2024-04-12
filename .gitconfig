@@ -74,6 +74,9 @@
   refresh = "!git up main && git pull && git push origin main"
   dmb = "!git-delete-merged-branches --effort 3"
 
+  # try out
+  # git config --local submodule.recurse true
+
   # undo to staged:
   #
   #git restore --source=HEAD^ --staged -- file

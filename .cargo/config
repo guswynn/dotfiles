@@ -1,10 +1,9 @@
 # update when mold darwin is stable
 # [target."aarch64-apple-darwin"]
 # linker = "/usr/bin/clang"
-# Xcode15 woes :(
-# rustflags=["--cfg=tokio_unstable", "-Clink-arg=-fuse-ld=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld-classic"]
+# rustflags=["--cfg=tokio_unstable", "-Clink-arg=-fuse-ld=/Users/gus/work/sold/build/ld64"]
 
 # FOR DEBUGGING
-# paths = ["work/rust-postgres", "work/ssh-rs", "work/tokio-openssl"]
+# paths = ["work/opentelemetry-rust", "work/tracing-opentelemetry"]
 # paths = ["work/rust-openssl", "work/rust-postgres"]
 # paths = ["work/openssh"]

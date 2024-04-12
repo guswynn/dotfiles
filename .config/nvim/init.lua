@@ -42,13 +42,9 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
+      { "simrat39/inlay-hints.nvim" },
       -- Useful status updates for LSP
-      -- TODO(guswynn): do I need this
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      -- TODO(guswynn): do I need this
-      'folke/neodev.nvim',
+      { 'j-hui/fidget.nvim',        opts = {} },
     },
   },
 
@@ -381,10 +377,42 @@ vim.defer_fn(function()
   }
 end, 0)
 
+local ih = require("inlay-hints")
+ih.setup(
+  {
+    hints = {
+      parameter = {
+        highlight = "DarkGray",
+        -- Why isn't this working?
+        show = true,
+      },
+      type = {
+        -- What should this link to?
+        highlight = "DarkGray",
+      },
+    },
+    eol = {
+      parameter = {
+        separator = ", ",
+        format = function(hints)
+          return string.format("%s", hints)
+        end,
+      },
+
+      type = {
+        separator = ", ",
+        format = function(hints)
+          return string.format("%s", hints)
+        end,
+      },
+    },
+  }
+);
 
 -- Configure LSP
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
+  ih.on_attach(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -408,9 +436,9 @@ local on_attach = function(client, bufnr)
   nmap('<leader>gd', function() require('telescope.builtin').lsp_definitions({ jump_type = "vsplit" }) end,
     '[G]oto [D]efinition')
   nmap('<leader>gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
+  nmap('<leader>gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
 
   -- other
-  nmap('<leader>gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
   nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
@@ -453,18 +481,21 @@ local servers = {
   rust_analyzer = {
     ["rust-analyzer"] = {
       rust = {
-        analyzerTargetDir = "target-ra"
-      }
+        analyzerTargetDir = "target-ra",
+      },
+      inlayHints = {
+        enable = true,
+        typeHints = { enable = true },
+        parameterHints = { enable = true },
+      },
     }
   },
 
-  -- only for this file lol
+  -- Only for this file LOL
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
-      -- NOTE: toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-      -- diagnostics = { disable = { 'missing-fields' } },
     },
   },
 }
