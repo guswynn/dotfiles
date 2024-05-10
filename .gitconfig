@@ -13,7 +13,6 @@
   br = branch -vv
   staged = diff --staged
   ds = diff --staged
-  s = status
   sh = show
   inf = show --name-only
   d = diff
@@ -73,6 +72,7 @@
   publish = "!git push -u origin $(git branch --show-current)"
   refresh = "!git up main && git pull && git push origin main"
   dmb = "!git-delete-merged-branches --effort 3"
+  branch-diff = "!git diff $(git merge-base --fork-point main)"
 
   # try out
   # git config --local submodule.recurse true
@@ -106,3 +106,5 @@
   # updateRefs = true
 [pull]
 	ff = only
+[rerere]
+	enabled = true

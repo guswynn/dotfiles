@@ -382,15 +382,15 @@ ih.setup(
   {
     hints = {
       parameter = {
-        highlight = "DarkGray",
-        -- Why isn't this working?
-        show = true,
+        show = false,
       },
       type = {
         -- What should this link to?
         highlight = "DarkGray",
       },
     },
+    -- until nvim 0.10 releases
+    only_current_line = true,
     eol = {
       parameter = {
         separator = ", ",
@@ -484,9 +484,8 @@ local servers = {
         analyzerTargetDir = "target-ra",
       },
       inlayHints = {
-        enable = true,
         typeHints = { enable = true },
-        parameterHints = { enable = true },
+        parameterHints = { enable = false },
       },
     }
   },

@@ -252,3 +252,5 @@ export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
 if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
 fi
+
+# also install fd, rg, sd, and lima.

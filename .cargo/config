@@ -7,3 +7,7 @@
 # paths = ["work/opentelemetry-rust", "work/tracing-opentelemetry"]
 # paths = ["work/rust-openssl", "work/rust-postgres"]
 # paths = ["work/openssh"]
+
+# Aljoscha bullied me into this
+# [target.aarch64-apple-darwin]
+# rustflags = ["-C", "debuginfo=0"]
