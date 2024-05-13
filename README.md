@@ -36,3 +36,8 @@ a focus on rust
 - wezterm
 - maccy
 - git branchless
+- also install fd, rg, sd, and lima.
+
+font:
+- https://github.com/jesusmgg/comic-shanns-mono
+- Iosevka Term Light various others

@@ -253,4 +253,3 @@ if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
 fi
 
-# also install fd, rg, sd, and lima.
