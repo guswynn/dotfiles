@@ -3,7 +3,7 @@ local wezterm = require 'wezterm';
 -- From Wez's config
 -- A helper function for my fallback fonts
 function font_with_fallback(name, params)
-  local names = {name, "Noto Color Emoji", "JetBrains Mono"}
+  local names = { name, "Noto Color Emoji", "JetBrains Mono" }
   return wezterm.font_with_fallback(names, params)
 end
 
@@ -14,7 +14,7 @@ return {
     {
       italic = true,
       intensity = "Bold",
-      font = font_with_fallback("Iosevka Term", {bold=true, italic=true}),
+      font = font_with_fallback("Iosevka Term", { bold = true, italic = true }),
     },
     {
       italic = true,
@@ -22,7 +22,7 @@ return {
     },
     {
       intensity = "Bold",
-      font = font_with_fallback("Iosevka Term", {bold=true}),
+      font = font_with_fallback("Iosevka Term", { bold = true }),
     },
     {
       intensity = "Half",
@@ -31,14 +31,14 @@ return {
   },
   bold_brightens_ansi_colors = true,
   -- both my normal usernames
-  font_dirs = {"/Users/azw/Library/Fonts", "/Users/gus/Library/Fonts"},
+  font_dirs = { "/Users/azw/Library/Fonts", "/Users/gus/Library/Fonts" },
 
   -- Good defaults for my monitor(s), before I zoom in and out.
   dpi = 110.0,
-  font_size = 12,
+  font_size = 16,
 
   -- no ligatures
-  harfbuzz_features = {"calt=0", "clig=0", "liga=0"},
+  harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
   -- Looks good with vim's `koehler`
   color_scheme = "LiquidCarbonTransparent",
@@ -57,15 +57,15 @@ return {
     -- Change the default click behavior so that it only selects
     -- text and doesn't open hyperlinks
     {
-      event={Up={streak=1, button="Left"}},
-      mods="NONE",
-      action=wezterm.action{CompleteSelection="Clipboard"},
+      event = { Up = { streak = 1, button = "Left" } },
+      mods = "NONE",
+      action = wezterm.action { CompleteSelection = "Clipboard" },
     },
     -- and make CTRL-Click open hyperlinks
     {
-      event={Up={streak=1, button="Left"}},
-      mods="CTRL",
-      action="OpenLinkAtMouseCursor",
+      event = { Up = { streak = 1, button = "Left" } },
+      mods = "CTRL",
+      action = "OpenLinkAtMouseCursor",
     },
   },
 
