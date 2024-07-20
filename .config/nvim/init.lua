@@ -8,11 +8,14 @@ vim.g.maplocalleader = ' '
 -- More colors
 vim.o.termguicolors = true
 
+vim.cmd.colorscheme 'wildcharm'
+-- Add a bit more contrast.
+-- vim.cmd.hi 'Normal guifg=White guibg=Black'
+
 -- Set colors before ibl is setup.
 -- TODO(guswynn): this could be done with a refresh function in ibl
-vim.cmd.colorscheme 'koehler'
-vim.cmd.hi 'IblScope guifg=DarkGray'
-vim.cmd.hi 'IblIndent guifg=DarkGray'
+vim.cmd.hi 'IblScope guifg=#767676'
+vim.cmd.hi 'IblIndent guifg=#767676'
 
 
 -- https://github.com/folke/lazy.nvim package manager
@@ -377,7 +380,7 @@ vim.defer_fn(function()
 end, 0)
 
 vim.lsp.inlay_hint.enable()
-vim.cmd.hi 'LspInlayHint guifg=DarkGrey'
+vim.cmd.hi 'LspInlayHint guifg=#767676'
 vim.lsp.handlers['experimental/serverStatus'] = function(_, result)
   if not result.quiescent then
     return

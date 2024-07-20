@@ -40,15 +40,10 @@ return {
   -- no ligatures
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
-  -- Looks good with vim's `koehler`
-  color_scheme = "LiquidCarbonTransparent",
-  -- other ones I have tried...
-  -- color_scheme = "Belafonte Day",
-  -- color_scheme = "Galizur",
-  -- color_scheme = "Wryan",
-  -- color_scheme = "UnderTheSea",
-  -- color_scheme = "synthwave",
-  -- color_scheme = "Harper",
+  -- Looks good with NeoVim 0.10's `wildcharm`
+  color_scheme = "Harper",
+  -- Slightly darker
+  -- color_scheme = "LiquidCarbonTransparent",
 
   -- Middle mouse button pastes the primary selection.
   mouse_bindings = {
