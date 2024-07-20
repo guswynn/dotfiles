@@ -42,9 +42,8 @@ require('lazy').setup({
       'williamboman/mason.nvim',
       'williamboman/mason-lspconfig.nvim',
 
-      { "simrat39/inlay-hints.nvim" },
       -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim',        opts = {} },
+      { 'j-hui/fidget.nvim', opts = {} },
     },
   },
 
@@ -377,42 +376,19 @@ vim.defer_fn(function()
   }
 end, 0)
 
-local ih = require("inlay-hints")
-ih.setup(
-  {
-    hints = {
-      parameter = {
-        show = false,
-      },
-      type = {
-        -- What should this link to?
-        highlight = "DarkGray",
-      },
-    },
-    -- until nvim 0.10 releases
-    only_current_line = true,
-    eol = {
-      parameter = {
-        separator = ", ",
-        format = function(hints)
-          return string.format("%s", hints)
-        end,
-      },
-
-      type = {
-        separator = ", ",
-        format = function(hints)
-          return string.format("%s", hints)
-        end,
-      },
-    },
-  }
-);
+vim.lsp.inlay_hint.enable()
+vim.cmd.hi 'LspInlayHint guifg=DarkGrey'
+vim.lsp.handlers['experimental/serverStatus'] = function(_, result)
+  if not result.quiescent then
+    return
+  end
+  -- Consider making this slightly less expensive?
+  vim.lsp.inlay_hint.enable()
+end
 
 -- Configure LSP
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
-  ih.on_attach(client, bufnr)
   client.server_capabilities.semanticTokensProvider = nil
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
   -- to define small helper and utility functions so you don't have to repeat yourself
@@ -465,6 +441,7 @@ local on_attach = function(client, bufnr)
     {
       group = "AutoFormat",
       callback = function()
+        vim.lsp.inlay_hint.enable()
         vim.lsp.buf.format()
       end,
     }
@@ -484,6 +461,7 @@ local servers = {
         analyzerTargetDir = "target-ra",
       },
       inlayHints = {
+        enable = true,
         typeHints = { enable = true },
         parameterHints = { enable = false },
       },
@@ -519,7 +497,6 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
-
 
 -- configure nvim-cmp
 -- `:help cmp`

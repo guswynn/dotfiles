@@ -35,7 +35,7 @@ return {
 
   -- Good defaults for my monitor(s), before I zoom in and out.
   dpi = 110.0,
-  font_size = 16,
+  font_size = 13,
 
   -- no ligatures
   harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
