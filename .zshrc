@@ -183,11 +183,6 @@ export PATH="/opt/homebrew/bin:$PATH"
 # confluent path (cli is in `~/bin`)
 export CONFLUENT_HOME=/Users/gus/confluent
 
-# materialize
-alias mat="cd ~/work/materialize"
-alias mattest="cd ~/work/materialize/test/testdrive"
-alias timely="cd ~/work/timely-dataflow"
-
 # Created by `pipx` on 2021-12-06 22:48:19
 export PATH="$PATH:/Users/gus/.local/bin"
 
