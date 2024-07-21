@@ -149,6 +149,7 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+
 -- Configure nvim-cmp. From kickstart.nvim.
 -- `:help cmp`
 -- TODO(guswynn): I might not need this.

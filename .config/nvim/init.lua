@@ -12,6 +12,7 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+
 -- Colors
 vim.o.termguicolors = true
 vim.cmd.colorscheme 'wildcharm'
@@ -55,7 +56,6 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {} },
     },
   },
-
   {
     -- Autocompletion
     'hrsh7th/nvim-cmp',
@@ -66,7 +66,6 @@ require('lazy').setup({
       'hrsh7th/cmp-nvim-lsp',
     },
   },
-
   {
     -- lualine as statusline
     -- `:help lualine.txt`
@@ -80,7 +79,6 @@ require('lazy').setup({
       },
     },
   },
-
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -99,7 +97,6 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   -- TODO(guswynn): consider removing this.
   { 'numToStr/Comment.nvim', opts = {} },
-
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -120,7 +117,6 @@ require('lazy').setup({
       },
     },
   },
-
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -132,8 +128,8 @@ require('lazy').setup({
 
 }, {})
 
--- General vim settings
 
+-- General vim settings
 -- Set highlight on search
 vim.o.hlsearch = false
 -- Make line numbers default
@@ -194,6 +190,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous dia
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open floating diagnostic message' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
+
 
 -- configure telescope and its keymaps
 -- `:help telescope` and `:help telescope.setup()`
