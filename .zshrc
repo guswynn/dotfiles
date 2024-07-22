@@ -69,6 +69,13 @@ autoload colors; colors
 
 # Prompt
 
+# Used below
+cwd () {
+  dir="${PWD/#$HOME/~}"
+  dir="${dir//\/data\/users\/$USER/~}"
+  echo "$dir"
+}
+
 # vcs stuff.
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*:*' get-revision true
