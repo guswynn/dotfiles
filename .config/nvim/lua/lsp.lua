@@ -17,6 +17,25 @@ vim.lsp.handlers['experimental/serverStatus'] = function(_, result)
   vim.lsp.inlay_hint.enable()
 end
 
+vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  group = "lsp_diagnostics_hold",
+  pattern = "*",
+  callback = function()
+    vim.diagnostic.open_float({
+      scope = "line",
+      focusable = false,
+      close_events = {
+        "CursorMoved",
+        "CursorMovedI",
+        "BufHidden",
+        "InsertCharPre",
+        "WinLeave",
+      },
+    })
+  end
+})
+
 -- Configure LSP
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(client, bufnr)
