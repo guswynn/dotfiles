@@ -5,12 +5,14 @@ export CLICOLOR=true
 
 # History stuff
 export HISTFILE="$HOME/.zsh-history"
-export HISTSIZE=SAVEHIST=10240
+export HISTSIZE=10000000
+export SAVEHIST=10000000
 export LESSHISTFILE="-" # disable less history
-export HISTSIZE=100000
+setopt APPEND_HISTORY
+setopt share_history
+setopt hist_ignore_dups
 
 # TODO(guswynn): investigate each of these
-setopt APPEND_HISTORY
 setopt AUTO_CD
 setopt COMPLETE_ALIASES
 setopt COMPLETE_IN_WORD
@@ -28,11 +30,9 @@ unsetopt CASE_GLOB
 KEYTIMEOUT=1
 zle -N newtab
 
-
 # Zsh completion style
-
-# required for the following zstyles to work
 #
+# required for the following zstyles to work
 # Also required when using homebrew
 # https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
 # basically, g-w the compaudit files
@@ -46,29 +46,22 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 # pasting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
-
 # Vim mode
-
 bindkey -v
 # ^R reverse search
 bindkey '^R' history-incremental-search-backward
 
-
 # Fix some buttons
 # see https://unix.stackexchange.com/questions/20298/home-key-not-working-in-terminal
-
 bindkey '^[[Z' reverse-menu-complete
 bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 export TERMINFO=~/.terminfo
 
-
 # TODO(guswynn): investigate what this is
 autoload colors; colors
 
-
 # Prompt
-
 # Used below
 cwd () {
   dir="${PWD/#$HOME/~}"
@@ -76,7 +69,7 @@ cwd () {
   echo "$dir"
 }
 
-# vcs stuff.
+# TODO(guswynn): find something to make this general purpose
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*:*' get-revision true
 zstyle ':vcs_info:git*' formats "%b (%12.12i)"
@@ -108,11 +101,9 @@ zle -N zle-keymap-select
 
 
 # Vim
-
 # vim multiple files opens in vsplits
 alias vim='nvim -O'
 export EDITOR=nvim
-
 
 # `PATH`
 export PATH=$PATH:$HOME/bin
@@ -135,11 +126,11 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/go:$PATH"
 # go for karpenter and stuff
 export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
-
+# jdk
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
 # TODO(guswynn): investigate this
 unset USERNAME
-
 
 # Mercurial/hg shorthands
 alias allyourrebase="hg pull && hg rebase -r 'draft()' -d master"
@@ -149,13 +140,10 @@ alias master="hg up master"
 alias hum="hg up master"
 alias hinf="hg show --stat"
 
-
 # git shorthands are in the git config
-
 
 # `time` formatting
 export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
-
 
 # Utilities for piping.
 function after {
@@ -172,19 +160,16 @@ function append {
 }
 alias stripcolors="sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g'"
 
-
 # Rust
 export PATH="$HOME/.cargo/bin:$PATH"
 export RUST_BACKTRACE=1
 # cargo/rust stuff
 alias cargo-config="cargo +nightly -Zunstable-options config get"
-
 # Moving around my repos.
 alias repos="cd ~/repos"
 alias work="cd ~/work"
 alias rust="cd ~/repos/rust"
 alias dotfiles="cd ~/repos/dotfiles"
-
 
 # Git stuff
 # TODO(guswynn): clean this all up.
@@ -205,7 +190,6 @@ rebaserino () {
   git rebase -i `git merge-base HEAD ${1:-main}`
 }
 
-
 # replace/sed/rg stuff
 replacerino() {
   rg $1 -l | xargs -I{} sed -i '' "s/$1/$2/g" {}
@@ -217,13 +201,12 @@ deleterino() {
   rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
 }
 
-
 # Zsh 
-
 # shorthand to reload this file
 alias reloadprof='source ~/.zshrc'
 
-# work-specific
+# work-specific 
+# TODO(guswynn): figure this out!
 if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
 fi

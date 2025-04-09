@@ -75,7 +75,8 @@ local on_attach = function(client, bufnr)
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
   nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-  -- See `:help K` for why this keymap
+  -- See `:help K` for why this keymap. Use `<C-w>q` to close.
+  -- TODO(guswynn): improve this
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
 
@@ -113,6 +114,11 @@ require('mason-lspconfig').setup()
 
 -- Configuration for servers.
 local servers = {
+  clangd = {
+    initialization_options = {
+      fallback_flags = { '-std=c++23' },
+    }
+  },
   rust_analyzer = {
     ["rust-analyzer"] = {
       rust = {
@@ -154,7 +160,7 @@ require('lspconfig')["rust_analyzer"].setup {
 local mason_lspconfig = require 'mason-lspconfig'
 mason_lspconfig.setup {
   -- There is where I list servers, I care about
-  ensure_installed = { "lua_ls", "pyright" },
+  ensure_installed = { "lua_ls", "pyright", "clangd" },
 }
 -- Hook up the mason-installed servers.
 mason_lspconfig.setup_handlers {
