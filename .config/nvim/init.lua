@@ -47,11 +47,6 @@ require('lazy').setup({
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      -- TODO(guswynn): just use native?
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
       -- Useful status updates for LSP
       { 'j-hui/fidget.nvim', opts = {} },
     },
@@ -228,7 +223,6 @@ local function find_git_root()
     -- Extract the directory from the current file's path
     current_dir = vim.fn.fnamemodify(current_file, ':h')
   end
-
   -- Find the Git root directory from the current file's path
   local git_root = vim.fn.systemlist('git -C ' .. vim.fn.escape(current_dir, ' ') .. ' rev-parse --show-toplevel')
       [1]
@@ -238,7 +232,6 @@ local function find_git_root()
   end
   return git_root
 end
-
 -- Custom live_grep function to search in git root
 local function live_grep_git_root()
   local git_root = find_git_root()
@@ -248,7 +241,7 @@ local function live_grep_git_root()
     }
   end
 end
-
+-- TODO(guswynn): look into this.
 vim.api.nvim_create_user_command('LiveGrepGitRoot', live_grep_git_root, {})
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -281,11 +274,9 @@ vim.keymap.set('n', '<leader>sG', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
-
 -- Lsp
 require('lsp')
 require('treesitter')
-
 
 -- Nice bottom line.
 require('lualine').setup {

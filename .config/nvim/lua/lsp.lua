@@ -93,11 +93,11 @@ local on_attach = function(client, bufnr)
   vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
     vim.lsp.buf.format()
   end, { desc = 'Format current buffer with LSP' })
-  vim.api.nvim_create_augroup("AutoFormat", {})
+  vim.api.nvim_create_augroup("InlayPlusAutoFormat", {})
   vim.api.nvim_create_autocmd(
     "BufWritePre",
     {
-      group = "AutoFormat",
+      group = "InlayPlusAutoFormat",
       callback = function()
         vim.lsp.inlay_hint.enable()
         vim.lsp.buf.format()
@@ -106,19 +106,23 @@ local on_attach = function(client, bufnr)
   )
 end
 
--- mason-lspconfig requires that these setup functions are called in this order
--- before setting up the servers.
-require('mason').setup()
--- Connects `mason` with `lspconfig`.
-require('mason-lspconfig').setup()
-
 -- Configuration for servers.
 local servers = {
+  -- TODO(guswynn): not using mason anymore, so this, python, and lua might need to installed manually
   clangd = {
     initialization_options = {
       fallback_flags = { '-std=c++23' },
     }
   },
+  -- Only for neovim lol.
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
+  },
+
+  -- ra should be installed with rustup
   rust_analyzer = {
     ["rust-analyzer"] = {
       rust = {
@@ -131,25 +135,15 @@ local servers = {
       },
     }
   },
-
-  -- Only for neovim lol.
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
 }
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- Setup and configure servers that aren't installed by mason.
+-- Setup and configure servers.
 -- Currently this is `rust-analyzer`, for which I prefer the rustup
 -- version.
---
--- TODO(guswynn): should I switch to https://github.com/mrcjkb/rustaceanvim?
 require('lspconfig')["rust_analyzer"].setup {
   capabilities = capabilities,
   on_attach = on_attach,
@@ -157,23 +151,7 @@ require('lspconfig')["rust_analyzer"].setup {
   filetypes = (servers["rust_analyzer"] or {}).filetypes,
 }
 
-local mason_lspconfig = require 'mason-lspconfig'
-mason_lspconfig.setup {
-  -- There is where I list servers, I care about
-  ensure_installed = { "lua_ls", "pyright", "clangd" },
-}
--- Hook up the mason-installed servers.
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
-
+-- TODO(guswynn): setup other ones as well
 
 -- Configure nvim-cmp. From kickstart.nvim.
 -- `:help cmp`
