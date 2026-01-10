@@ -1,27 +1,30 @@
-# Basic configs
-
-# TODO(guswynn): investigate what this is
+# Full terminal support
 export CLICOLOR=true
+export TERM=xterm-256color
+autoload colors; colors
 
-# History stuff
+
+# History, shared across splits
 export HISTFILE="$HOME/.zsh-history"
 export HISTSIZE=10000000
 export SAVEHIST=10000000
 export LESSHISTFILE="-" # disable less history
 setopt APPEND_HISTORY
 setopt share_history
+setopt inc_append_history
 setopt hist_ignore_dups
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
 
-# TODO(guswynn): investigate each of these
+
+# Various tiny settings that can be left here.
+unset EXTENDED_GLOB
 setopt AUTO_CD
 setopt COMPLETE_ALIASES
 setopt COMPLETE_IN_WORD
 setopt CORRECT
-unset EXTENDED_GLOB
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_REDUCE_BLANKS
-setopt LOCAL_OPTIONS # allow functions to have local options
-setopt LOCAL_TRAPS # allow functions to have local traps
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
 setopt NO_HUP
 setopt NO_LIST_BEEP
 setopt PROMPT_SUBST
@@ -30,26 +33,25 @@ unsetopt CASE_GLOB
 KEYTIMEOUT=1
 zle -N newtab
 
-# Zsh completion style
-#
-# required for the following zstyles to work
-# Also required when using homebrew
-# https://stackoverflow.com/questions/13762280/zsh-compinit-insecure-directories
-# basically, g-w the compaudit files
-autoload -Uz compinit
-compinit -z
 
-# nice selection menu
+# Disabled, to use basic completion stylw
+# autoload -Uz compinit
+# compinit -z
+
+autoload colors; colors
+# Nice selection menu
 zstyle ':completion:*' menu select
-# matches case insensitive for lowercase
+# Matches case insensitive for lowercase
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
-# pasting with tabs doesn't perform completion
+# {asting with tabs doesn't perform completion
 zstyle ':completion:*' insert-tab pending
 
+autoload colors; colors
 # Vim mode
 bindkey -v
 # ^R reverse search
 bindkey '^R' history-incremental-search-backward
+
 
 # Fix some buttons
 # see https://unix.stackexchange.com/questions/20298/home-key-not-working-in-terminal
@@ -58,11 +60,8 @@ bindkey "${terminfo[khome]}" beginning-of-line
 bindkey "${terminfo[kend]}" end-of-line
 export TERMINFO=~/.terminfo
 
-# TODO(guswynn): investigate what this is
-autoload colors; colors
 
-# Prompt
-# Used below
+# Prompt support:
 cwd () {
   dir="${PWD/#$HOME/~}"
   dir="${dir//\/data\/users\/$USER/~}"
@@ -92,7 +91,7 @@ function vi_mode() {
 PROMPT='%{$fg[magenta]%}%n@mac %{$fg[green]%}Helping %{$fg[blue]%}$(cwd) %{$fg[yellow]%} ${vcs_info_msg_0_}
 %{$fg[cyan]%}%D{%F} %* $(vi_mode) > %{$reset_color%}'
 
-# reset prompt in vi mode
+# Reset prompt in vi mode
 function zle-line-init zle-keymap-select {
 	zle reset-prompt
 }
@@ -100,12 +99,81 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 
 
-# Vim
+# Shorthand to reload this file
+alias reloadprof='source ~/.zshrc'
+
+
+# Neovim support
 # vim multiple files opens in vsplits
 alias vim='nvim -O'
 export EDITOR=nvim
 
-# `PATH`
+
+# ls support
+alias ls='ls --color'
+
+
+# `time` formatting
+export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
+
+
+# Rust support
+export PATH="$HOME/.cargo/bin:$PATH"
+export RUST_BACKTRACE=1
+# cargo/rust stuff
+alias cargo-config="cargo +nightly -Zunstable-options config get"
+# Moving around my repos.
+alias repos="cd ~/repos"
+alias work="cd ~/work"
+alias rust="cd ~/repos/rust"
+alias dotfiles="cd ~/repos/dotfiles"
+
+
+# Mercurial/hg shorthands
+alias allyourrebase="hg pull && hg rebase -r 'draft()' -d master"
+alias hgupall="hg pull && allyourrebase && hg up master"
+alias hgeverything="allyourrebase && arc feature --cleanup"
+alias master="hg up master"
+alias hum="hg up master"
+alias hinf="hg show --stat"
+
+
+# Git
+# most git shorthands are in the git config
+rebaserino () {
+  git rebase -i `git merge-base HEAD ${1:-main}`
+}
+
+
+# Utilities for piping.
+function after {
+    perl -pe "s|.*?$1||"
+}
+function before {
+    sed "s|$1.*||"
+}
+function prepend {
+    sed "s|^|$1|"
+}
+function append {
+    sed "s|$|$1|"
+}
+alias stripcolors="sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g'"
+
+
+# replace/sed/rg stuff
+replacerino() {
+  rg $1 -l | xargs -I{} sed -i '' "s/$1/$2/g" {}
+}
+replacerinofile() {
+  sed -i '' "s/$1/$2/g" $3
+}
+deleterino() {
+  rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
+}
+
+
+# Other `PATH` additions
 export PATH=$PATH:$HOME/bin
 export PATH=$PATH:$HOME/.local/bin
 # arduino path
@@ -129,83 +197,13 @@ export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
 # jdk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 
-# TODO(guswynn): investigate this
-unset USERNAME
 
-# Mercurial/hg shorthands
-alias allyourrebase="hg pull && hg rebase -r 'draft()' -d master"
-alias hgupall="hg pull && allyourrebase && hg up master"
-alias hgeverything="allyourrebase && arc feature --cleanup"
-alias master="hg up master"
-alias hum="hg up master"
-alias hinf="hg show --stat"
-
-# git shorthands are in the git config
-
-# `time` formatting
-export TIMEFMT=$'\nreal\t%*E\nuser\t%*U\nsys\t%*S'
-
-# Utilities for piping.
-function after {
-    perl -pe "s|.*?$1||"
-}
-function before {
-    sed "s|$1.*||"
-}
-function prepend {
-    sed "s|^|$1|"
-}
-function append {
-    sed "s|$|$1|"
-}
-alias stripcolors="sed $'s,\x1b\\[[0-9;]*[a-zA-Z],,g'"
-
-# Rust
-export PATH="$HOME/.cargo/bin:$PATH"
-export RUST_BACKTRACE=1
-# cargo/rust stuff
-alias cargo-config="cargo +nightly -Zunstable-options config get"
-# Moving around my repos.
-alias repos="cd ~/repos"
-alias work="cd ~/work"
-alias rust="cd ~/repos/rust"
-alias dotfiles="cd ~/repos/dotfiles"
-
-# Git stuff
-# TODO(guswynn): clean this all up.
-#
-# try this out to clean up githup better
-# current notes: checkout main and pull upstream main first
-# (well, trying to have main track upstream/main to not have to do this)
-# effort 3 is because of squashed-and-merged pr's
-# you have still have to manually delete the remote branches
-#alias git-dmb="git-delete-merged-branches --effort 3"
-# git-shows () {
-#  git show HEAD...$(git merge-base HEAD main)
-# }
-# for git-fixup
-export GIT_INSTAFIX_UPSTREAM=main
-export GIT_INSTAFIX_REQUIRE_NEWLINE=y
-rebaserino () {
-  git rebase -i `git merge-base HEAD ${1:-main}`
-}
-
-# replace/sed/rg stuff
-replacerino() {
-  rg $1 -l | xargs -I{} sed -i '' "s/$1/$2/g" {}
-}
-replacerinofile() {
-  sed -i '' "s/$1/$2/g" $3
-}
-deleterino() {
-  rg $1 -l | xargs -I{} sed -i '' "/$1/d" {}
-}
-
-# Zsh 
-# shorthand to reload this file
-alias reloadprof='source ~/.zshrc'
-
-# work-specific 
+# work-specific
+# TODO(guswynn): figure this out!
+if test -f ~/.zshrc-work; then
+  source ~/.zshrc-work
+fi
+# work-specific
 # TODO(guswynn): figure this out!
 if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
