@@ -196,6 +196,8 @@ export PATH="$HOME/go:$PATH"
 export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
 # jdk
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+# scale
+export PATH="$PATH:/Users/gus/Library/Application Support/Coursier/bin"
 
 
 # work-specific

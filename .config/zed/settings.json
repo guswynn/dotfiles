@@ -7,6 +7,37 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "tool_permissions": {
+      "tools": {
+        "terminal": {
+          "always_allow": [
+            {
+              "pattern": "^cargo\\s+build(\\s|$)"
+            }
+          ]
+        }
+      }
+    },
+    "dock": "right",
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-6"
+    },
+    "model_parameters": []
+  },
   "vim_mode": true,
   "ui_font_size": 16,
   "cursor_shape": "block",
