@@ -7,6 +7,7 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "diff_view_style": "split",
   "project_panel": {
     "dock": "left"
   },
@@ -22,10 +23,35 @@
   "agent": {
     "tool_permissions": {
       "tools": {
+        "create_directory": {
+          "always_allow": [
+            {
+              "pattern": "^scala_zed_test/"
+            }
+          ]
+        },
         "terminal": {
           "always_allow": [
             {
               "pattern": "^cargo\\s+build(\\s|$)"
+            },
+            {
+              "pattern": "^which\\s+scala(\\s|$)"
+            },
+            {
+              "pattern": "^java\\b"
+            },
+            {
+              "pattern": "^head\\b"
+            },
+            {
+              "pattern": "^sbt\\s+compile(\\s|$)"
+            },
+            {
+              "pattern": "^ls\\s+\\~/repos/scratch_dbs(\\s|$)"
+            },
+            {
+              "pattern": "^echo\\s+directory(\\s|$)"
             }
           ]
         }
