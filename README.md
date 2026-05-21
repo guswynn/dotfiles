@@ -36,4 +36,4 @@ ln -s ~/repos/dotfiles/.config/nvim/lua lua
 # also cargo config
 ```
 # jj
-I'm trying out jj
+I'm trying out jj. Rebase-and-merge is my main confusion right now.
