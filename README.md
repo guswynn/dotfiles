@@ -4,7 +4,6 @@
 - run `tic path/to/terminfo.src` in `$HOME`
   - Or with `-x` if needed
 
-
 ## Things to install
 - brew
 - wezterm
@@ -17,7 +16,6 @@
 Note that I am considering Berkeley Mono as well...
 - https://github.com/jesusmgg/comic-shanns-mono
 - Iosevka Term Light various others
-
 
 ## Install
 ```
