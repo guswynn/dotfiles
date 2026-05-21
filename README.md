@@ -25,7 +25,7 @@ Note that I am considering Berkeley Mono as well...
 - Iosevka Term Light various others
 
 
-# Install
+## Install
 ```
 ln -s ~/repos/dotfiles/.zshrc .zshrc
 ln -s ~/repos/dotfiles/.tmux.conf .tmux.conf
@@ -43,3 +43,5 @@ ln -s ~/repos/dotfiles/.config/nvim/lua lua
 
 # also cargo config
 ```
+# jj
+I'm trying out jj
