@@ -5,12 +5,6 @@
   - Or with `-x` if needed
 
 
-## macos gui setup hints:
-- Mouse speed
-- non-natural scrolling
-- scroll speed
- 
-
 ## Things to install
 - brew
 - wezterm
