@@ -9,7 +9,7 @@
 {
   "edit_predictions": {
     "provider": "zed",
-    "mode": "subtle"
+    "mode": "subtle",
   },
   "diff_view_style": "split",
   "project_panel": {
