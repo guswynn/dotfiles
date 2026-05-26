@@ -38,20 +38,6 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
 
 -- Configuration for servers.
 local servers = {
-  -- TODO(guswynn): not using mason anymore, so this, python, and lua might need to installed manually
-  clangd = {
-    initialization_options = {
-      fallback_flags = { '-std=c++23' },
-    }
-  },
-  -- Only for neovim lol.
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-
   -- ra should be installed with rustup
   rust_analyzer = {
     ["rust-analyzer"] = {
@@ -84,6 +70,19 @@ vim.lsp.config("rust_analyzer", {
   filetypes = (servers["rust_analyzer"] or {}).filetypes,
 })
 vim.lsp.enable({"rust_analyzer"})
+
+-- Basic python support
+vim.lsp.config("basedpyright", {
+  capabilities = capabilities,
+  on_attach = on_attach.on_attach,
+})
+vim.lsp.enable({"basedpyright"})
+
+vim.lsp.config("ruff", {
+  capabilities = capabilities,
+  on_attach = on_attach.on_attach,
+})
+vim.lsp.enable({"ruff"})
 
 -- For Scala, we used https://github.com/scalameta/nvim-metals,
 -- configured without lspconfig
