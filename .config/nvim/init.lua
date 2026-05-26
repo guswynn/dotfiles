@@ -4,7 +4,6 @@
 -- largely simplified.
 --
 -- lsp setup is in `lua/lsp.lua
--- treesitter setup is in `lua/treesitter.lua`
 -- The rest of the config is simple enough to be contained in this file.
 
 
@@ -95,7 +94,7 @@ require('lazy').setup({
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
-    branch = '0.1.x',
+    version = '*',
     dependencies = {
       'nvim-lua/plenary.nvim',
       -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -113,13 +112,46 @@ require('lazy').setup({
     },
   },
   {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    build = ':TSUpdate',
+    -- Highlight, edit, and navigate code, arborist seems cleaner than
+    -- treesitter right now
+    'arborist-ts/arborist.nvim',
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+        install_popular = true,
+        ignore = {"latex"},
+        ensure_installed = {"scala"},
+        disable = { highlight = {"rust"}},
+
+        config = function(_, opts)
+            require("arborist").setup(opts)
+        end
+    }
   },
+  -- Copied from the repo
+  {
+    'scalameta/nvim-metals',
+    ft = { "scala", "sbt", "java" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.on_attach = function(client, bufnr)
+        -- your on_attach function
+        on_attach = require('on_attach').on_attach(client, bufnr)
+      end
+
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = self.ft,
+        callback = function()
+          require("metals").initialize_or_attach(metals_config)
+        end,
+        group = nvim_metals_group,
+      })
+    end
+  },
+
 
 }, {})
 
@@ -276,7 +308,6 @@ vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = 
 
 -- Lsp
 require('lsp')
-require('treesitter')
 
 -- Nice bottom line.
 require('lualine').setup {
