@@ -3,3 +3,6 @@ cursor-style-blink = false
 shell-integration-features = no-cursor
 
 font-family = Iosevka
+font-feature = -calt
+font-feature = -liga
+font-feature = -dlig

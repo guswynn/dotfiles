@@ -1,9 +1,12 @@
 -- Configure my lsp's.
 -- `:help lspconfig` to start, probably.
 
+
 -- Enable inlay hints and make them quite dark (as dark as comments).
 vim.lsp.inlay_hint.enable()
 vim.cmd.hi 'LspInlayHint guifg=#767676'
+
+
 -- Work around this issue: <https://github.com/neovim/neovim/issues/26511>
 -- by constantly re-enabling it for newly opened buffers. We also
 -- call this on save (while formatting).
@@ -17,6 +20,7 @@ vim.lsp.handlers['experimental/serverStatus'] = function(_, result)
   vim.lsp.inlay_hint.enable()
 end
 
+-- Diagnostics hold
 vim.api.nvim_create_augroup("lsp_diagnostics_hold", { clear = true })
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   group = "lsp_diagnostics_hold",
@@ -35,6 +39,7 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
     })
   end
 })
+
 
 -- Configuration for servers.
 local servers = {
@@ -58,7 +63,6 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup and configure servers.
-
 on_attach = require('on_attach')
 
 -- For `rust-analyzer`, for which I prefer the rustup
@@ -97,7 +101,7 @@ vim.lsp.enable({"clangd"})
 
 -- Configure nvim-cmp. From kickstart.nvim.
 -- `:help cmp`
--- TODO(guswynn): I might not need this.
+-- TODO(guswynn): I probably don't need this
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 require('luasnip.loaders.from_vscode').lazy_load()

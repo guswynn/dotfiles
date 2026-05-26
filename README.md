@@ -1,23 +1,21 @@
 # dotfiles
 
-## Terminfo:
-- run `tic path/to/terminfo.src` in `$HOME`
-  - Or with `-x` if needed
-
-## Things to install
+## Install
 - brew
-- wezterm
-- maccy
-- git branchless
-- also install fd, rg, sd, and lima.
+- ghostty
+- fd, rg, sd
+- lsps
+- node
+- jj
 
 
 ## Font
 Note that I am considering Berkeley Mono as well...
 - https://github.com/jesusmgg/comic-shanns-mono
 - Iosevka Term Light various others
+- Ligatures off in ghostty
 
-## Install
+## Connect to dotfiles
 ```
 ln -s ~/repos/dotfiles/.zshrc .zshrc
 ln -s ~/repos/dotfiles/.tmux.conf .tmux.conf
@@ -37,5 +35,9 @@ ln -s ~/repos/dotfiles/.config/zed zed
 
 # also cargo config
 ```
-# jj
+
+## jj
 I'm trying out jj. Rebase-and-merge is my main confusion right now.
+
+## Neovim and LSP quirks
+- cpp's clangd requires compile_commands.json to be generated

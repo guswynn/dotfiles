@@ -1,10 +1,7 @@
 -- Gus's Neovim setup. Requires at least 0.10
 --
--- Originally derived from https://github.com/nvim-lua/kickstart.nvim, but
--- largely simplified.
---
 -- lsp setup is in `lua/lsp.lua
--- The rest of the config is simple enough to be contained in this file.
+-- `on_attach` for metals and vim.lsp `lua/on_attach.lua
 
 
 -- Set <space> as the leader key
@@ -25,7 +22,6 @@ vim.cmd.hi 'IblIndent guifg=#767676'
 
 
 -- Plugins!
-
 -- https://github.com/folke/lazy.nvim package manager
 -- `:help lazy.nvim.txt`
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
@@ -127,7 +123,7 @@ require('lazy').setup({
         end
     }
   },
-  -- Copied from the repo
+  -- Scala lsp support (non lspconfig)
   {
     'scalameta/nvim-metals',
     ft = { "scala", "sbt", "java" },
@@ -206,7 +202,6 @@ vim.opt.guicursor = 'a:blinkon0'
 vim.o.wrap = false
 
 -- Non-lsp keymaps.
-
 -- `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- Remap for dealing with word wrap
@@ -219,7 +214,7 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 
--- configure telescope and its keymaps
+-- Configure telescope and its keymaps (helpful for lsps)
 -- `:help telescope` and `:help telescope.setup()`
 local actions = require 'telescope.actions'
 require('telescope').setup {
@@ -306,8 +301,10 @@ vim.keymap.set('n', '<leader>sG', require('telescope.builtin').live_grep, { desc
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 vim.keymap.set('n', '<leader>sr', require('telescope.builtin').resume, { desc = '[S]earch [R]esume' })
 
+
 -- Lsp
 require('lsp')
+
 
 -- Nice bottom line.
 require('lualine').setup {
