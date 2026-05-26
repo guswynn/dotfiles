@@ -7,18 +7,22 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "edit_predictions": {
+    "provider": "zed",
+    "mode": "subtle"
+  },
   "diff_view_style": "split",
   "project_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "outline_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "collaboration_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "git_panel": {
-    "dock": "left"
+    "dock": "left",
   },
   "agent": {
     "tool_permissions": {
@@ -26,43 +30,43 @@
         "create_directory": {
           "always_allow": [
             {
-              "pattern": "^scala_zed_test/"
-            }
-          ]
+              "pattern": "^scala_zed_test/",
+            },
+          ],
         },
         "terminal": {
           "always_allow": [
             {
-              "pattern": "^cargo\\s+build(\\s|$)"
+              "pattern": "^cargo\\s+build(\\s|$)",
             },
             {
-              "pattern": "^which\\s+scala(\\s|$)"
+              "pattern": "^which\\s+scala(\\s|$)",
             },
             {
-              "pattern": "^java\\b"
+              "pattern": "^java\\b",
             },
             {
-              "pattern": "^head\\b"
+              "pattern": "^head\\b",
             },
             {
-              "pattern": "^sbt\\s+compile(\\s|$)"
+              "pattern": "^sbt\\s+compile(\\s|$)",
             },
             {
-              "pattern": "^ls\\s+\\~/repos/scratch_dbs(\\s|$)"
+              "pattern": "^ls\\s+\\~/repos/scratch_dbs(\\s|$)",
             },
             {
-              "pattern": "^echo\\s+directory(\\s|$)"
-            }
-          ]
-        }
-      }
+              "pattern": "^echo\\s+directory(\\s|$)",
+            },
+          ],
+        },
+      },
     },
     "dock": "right",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-6"
+      "model": "claude-sonnet-4-6",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "vim_mode": true,
   "ui_font_size": 16,
@@ -72,5 +76,9 @@
     "mode": "system",
     "light": "One Light",
     "dark": "One Dark",
+  },
+  "buffer_font_features": {
+    "calt": false,
+    "liga": false,
   },
 }

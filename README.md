@@ -33,6 +33,8 @@ cd ~/.config/nvim
 ln -s ~/repos/dotfiles/.config/nvim/init.lua init.lua
 ln -s ~/repos/dotfiles/.config/nvim/lua lua
 
+ln -s ~/repos/dotfiles/.config/zed zed
+
 # also cargo config
 ```
 # jj

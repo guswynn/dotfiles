@@ -1,2 +1,5 @@
 .vim/
 target-ra/
+*.mdb
+zed/conversations
+zed/prompts
