@@ -84,10 +84,16 @@ vim.lsp.config("ruff", {
 })
 vim.lsp.enable({"ruff"})
 
+-- Basic cpp support
+vim.lsp.config("clangd", {
+  capabilities = capabilities,
+  on_attach = on_attach.on_attach,
+})
+vim.lsp.enable({"clangd"})
+
 -- For Scala, we used https://github.com/scalameta/nvim-metals,
 -- configured without lspconfig
 
--- TODO(guswynn): setup python and cpp
 
 -- Configure nvim-cmp. From kickstart.nvim.
 -- `:help cmp`
