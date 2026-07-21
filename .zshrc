@@ -124,6 +124,7 @@ export RUST_BACKTRACE=1
 alias cargo-config="cargo +nightly -Zunstable-options config get"
 # Moving around my repos.
 alias repos="cd ~/repos"
+alias code="cd ~/repos"
 alias work="cd ~/work"
 alias rust="cd ~/repos/rust"
 alias dotfiles="cd ~/repos/dotfiles"
@@ -213,3 +214,5 @@ fi
 
 # opencode
 export PATH=/Users/gus/.opencode/bin:$PATH
+alias oc="sbx run --kit ~/repos/dotfiles/.config/opencode opencode-with-config --name"
+

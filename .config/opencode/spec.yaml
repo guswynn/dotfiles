@@ -1,0 +1,46 @@
+schemaVersion: "1"
+kind: agent
+name: opencode-with-config
+
+agent:
+  image: "docker/sandbox-templates:opencode-docker"
+  entrypoint:
+    run: [opencode]
+
+network:
+  allowedDomains:
+    - openrouter.ai
+  serviceDomains:
+    openrouter.ai: openrouter # Tag traffic to this domain
+  serviceAuth:
+    openrouter:
+      headerName: Authorization # Overwrite this header
+      valueFormat: "Bearer %s"
+
+credentials:
+  sources:
+    openrouter:
+      env:
+        - OPENROUTER_API_KEY # Host-side credential lookup
+
+environment:
+  proxyManaged:
+    - OPENROUTER_API_KEY # Set the in-VM env var to "proxy-managed"
+
+commands:
+  initFiles:
+    - path: /home/agent/.config/opencode/opencode.json
+      mode: "0644"
+      description: Configure OpenCode to use the local Docker Model Runner
+      content: |
+        {
+          "$schema": "https://opencode.ai/config.json",
+          "model": "openrouter/qwen/qwen3-coder-next",
+          "permission": {
+            "*": "allow"
+          },
+          "tools": {
+            "websearch": true
+          },
+          "autoupdate": false
+        }
