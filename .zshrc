@@ -210,3 +210,6 @@ fi
 if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
 fi
+
+# opencode
+export PATH=/Users/gus/.opencode/bin:$PATH

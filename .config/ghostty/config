@@ -2,7 +2,7 @@ cursor-style = block
 cursor-style-blink = false
 shell-integration-features = no-cursor
 
-font-family = Iosevka
-font-feature = -calt
-font-feature = -liga
-font-feature = -dlig
+theme = Harper
+
+font-family = "JetBrains Mono NL"
+font-size = 16

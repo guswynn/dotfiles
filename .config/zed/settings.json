@@ -7,6 +7,9 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "terminal": {
+    "font_family": "JetBrains Mono NL"
+  },
   "edit_predictions": {
     "provider": "zed",
     "mode": "subtle",
@@ -63,15 +66,15 @@
     },
     "dock": "right",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-6",
+      "provider": "openrouter",
+      "model": "qwen/qwen3-coder-flash",
     },
     "model_parameters": [],
   },
   "vim_mode": true,
   "ui_font_size": 16,
   "cursor_shape": "block",
-  "buffer_font_size": 15,
+  "buffer_font_size": 16,
   "theme": {
     "mode": "system",
     "light": "One Light",
