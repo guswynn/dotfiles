@@ -1,5 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "qwen/qwen3-coder",
-  "autoupdate": false,
+  "model": "openrouter/qwen/qwen3-coder-next",
+  "permission": {
+    "*": "allow"
+  },
+  "tools": {
+    "websearch": true
+  },
+  "autoupdate": true
 }
