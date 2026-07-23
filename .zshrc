@@ -216,4 +216,3 @@ fi
 export PATH=/Users/gus/.opencode/bin:$PATH
 alias oc="sbx run --kit ~/repos/dotfiles/.config/opencode opencode-with-config --name"
 alias foc="fence -- opencode"
-

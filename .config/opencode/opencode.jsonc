@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "openrouter/qwen/qwen3-coder-next",
+  "model": "openrouter/google/gemini-3.5-flash-lite",
   "permission": {
     "*": "allow"
   },
