@@ -195,8 +195,6 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 export PATH="$HOME/go:$PATH"
 # go for karpenter and stuff
 export PATH="$PATH:${GOPATH:-$HOME/go}/bin"
-# jdk
-export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
 # scale
 export PATH="$PATH:/Users/gus/Library/Application Support/Coursier/bin"
 
@@ -216,3 +214,14 @@ fi
 export PATH=/Users/gus/.opencode/bin:$PATH
 alias oc="sbx run --kit ~/repos/dotfiles/.config/opencode opencode-with-config --name"
 alias foc="fence -- opencode"
+
+# Java
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+## Set Java home correctly for agent sandboxes
+resolve_java_home() {
+  [ -n "$JAVA_HOME" ] && [ -x "$JAVA_HOME/bin/java" ] && { echo "$JAVA_HOME"; return; }
+  local jh; jh="$(/usr/libexec/java_home 2>/dev/null)" && [ -n "$jh" ] && { echo "$jh"; return; }
+  ls -d /Library/Java/JavaVirtualMachines/*/Contents/Home 2>/dev/null | sort -V | tail -1
+}
+export JAVA_HOME="$(resolve_java_home)"
+export PATH="$JAVA_HOME/bin:$PATH"

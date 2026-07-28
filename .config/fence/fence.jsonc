@@ -1,16 +1,23 @@
 {
   "$schema": "https://raw.githubusercontent.com/fencesandbox/fence/main/docs/schema/fence.schema.json",
   "extends": "code",
-  "network": { "allowedDomains": [] },
+  "network": { 
+    "allowedDomains": ["maven.org", "repo1.maven.org"],
+    // Consider scoping down with "allowUnixSockets": [...]
+    "allowAllUnixSockets": true,
+  },
   "filesystem": {
     "defaultDenyRead": true,
+    "denyRead": [
+      "~/repos/dotfiles/.config/fence",
+    ],
     "allowRead": [
+      // General Caches
       ".",
       "/tmp",
       "~/.cache/**",
-      "~/.opencode/**",
       "~/.local/state/**",
-      "~/.pi/**",
+      "~/Library/Caches/**",
       "~/.npm/_cacache",
       "~/.npm/_npx",
       "~/.cache",
@@ -20,16 +27,28 @@
       "~/.cargo/.package-cache",
       "~/.zcompdump*",
       "~/.local/share/**",
+      // Java and Scala
+      "~/Library/Application Support/**",
+      "/Library/Java/**",
+      "/share/icu/**",
+      "~/.sbt/**",
+      "~/.ivy2/**",
+      "/usr/libexec/**",
+      "/private/var/folders/**",
+      // Agents
+      "~/.opencode/**",
+      "~/.pi/**",
+      // Dotfile and configs
       "~/.config/**",
       "~/repos/dotfiles/**",
     ],
     "allowWrite": [
+      // General Caches
       ".",
       "/tmp",
       "~/.cache/**",
-      "~/.opencode/**",
       "~/.local/state/**",
-      "~/.pi/**",
+      "~/Library/Caches/**",
       "~/.npm/_cacache",
       "~/.npm/_npx",
       "~/.cache",
@@ -39,6 +58,18 @@
       "~/.cargo/.package-cache",
       "~/.zcompdump*",
       "~/.local/share/**",
+      // Java and Scala
+      "~/Library/Application Support/**",
+      "/Library/Java/**",
+      "/share/icu/**",
+      "~/.sbt/**",
+      "~/.ivy2/**",
+      "/usr/libexec/**",
+      "/private/var/folders/**",
+      // Agents
+      "~/.opencode/**",
+      "~/.pi/**",
+      // Dotfile and configs
       "~/.config/**",
       "~/repos/dotfiles/**",
     ],
