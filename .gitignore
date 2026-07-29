@@ -5,3 +5,5 @@ zed/conversations
 zed/prompts
 
 **/.claude/.cc-writes/
+
+**/.claude/settings.local.json

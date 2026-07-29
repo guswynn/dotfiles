@@ -3,8 +3,7 @@
   "extends": "code",
   "network": { 
     "allowedDomains": ["maven.org", "repo1.maven.org"],
-    // Consider scoping down with "allowUnixSockets": [...]
-    "allowAllUnixSockets": true,
+    "allowUnixSockets": ["~/.sbt", "/private/var/folders"],
   },
   "filesystem": {
     "defaultDenyRead": true,

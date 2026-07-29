@@ -3,9 +3,39 @@
   "sandbox": {
     "enabled": true,
     "network": {
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowUnixSockets": ["~/.sbt", "/private/var/folders"]
+    },
+    "credentials": {
+      "files": [
+        { "path": "~/.aws/credentials", "mode": "deny" },
+        { "path": "~/.ssh", "mode": "deny" }
+      ],
+      "envVars": [
+        { "name": "GITHUB_TOKEN", "mode": "deny" },
+        { "name": "NPM_TOKEN", "mode": "deny" },
+        { "name": "OPENROUTER_API_KEY", "mode": "deny" }
+      ]
     },
     "filesystem": {
+      "denyRead": [
+        "~/.ssh/id_*",
+        "~/.ssh/config",
+        "~/.ssh/*.pem",
+        "~/.ssh/**",
+        "~/.env",
+        "~/.gnupg/**",
+        "~/.aws/**",
+        "~/.config/gcloud/**",
+        "~/.kube/**",
+        "~/.docker/**",
+        "~/.pypirc",
+        "~/.netrc",
+        "~/.git-credentials",
+        "~/.cargo/credentials",
+        "~/.cargo/credentials.toml",
+        "~/repos/dotfiles/.config/fence"
+      ],
       "allowWrite": [
         "~/Library/Application Support/**",
         "/Library/Java/**",
