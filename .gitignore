@@ -3,3 +3,5 @@ target-ra/
 *.mdb
 zed/conversations
 zed/prompts
+
+**/.claude/.cc-writes/

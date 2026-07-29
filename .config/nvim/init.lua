@@ -219,10 +219,10 @@ vim.keymap.set('n', '<leader>w', vim.diagnostic.open_float, { desc = 'Open float
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics list' })
 
 -- Diagnostics Clarity
-vim.diagnostic.config({
-  underline = false,
-})
-vim.cmd.hi 'clear CursorLine'
+-- vim.diagnostic.config({
+--   underline = false,
+-- })
+-- vim.cmd.hi 'clear CursorLine'
 
 
 -- Configure telescope and its keymaps (helpful for lsps)

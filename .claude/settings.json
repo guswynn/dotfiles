@@ -1,0 +1,20 @@
+{
+  "theme": "dark",
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/Library/Application Support/**",
+        "/Library/Java/**",
+        "/share/icu/**",
+        "~/.sbt/**",
+        "~/.ivy2/**",
+        "/usr/libexec/**",
+        "/private/var/folders/**"
+      ]
+    }
+  }
+}
