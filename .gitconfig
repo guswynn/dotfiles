@@ -1,6 +1,7 @@
 [user]
-	name = Gus Wynn
+  name = Gus Wynn
 
+# Personal vs. work email
 [includeIf "gitdir:repos/"]
   path = .gitconfig-personal
 [includeIf "gitdir:photography/"]
@@ -9,40 +10,30 @@
   path = .gitconfig-work
   
 [alias]
+  # status and viewing
   st = status
   br = branch -vv
+  d = diff 
+  s = show
+  da = diff --cached
   staged = diff --staged
-  ds = diff --staged
-  sh = show
-  inf = show --name-only
-  d = diff
+
+  # checkout
   c = checkout
   co = checkout
   up = switch
-  a = branch
-  da = diff --cached
 
-  # mine
-  # ssl = log --graph --branches --pretty=format:'commit: %C(bold red)%h%Creset %C(red)<%H>%Creset %C(bold magenta)%d %Creset%ndate: %C(bold yellow)%cd %Creset%C(yellow)%cr%Creset%nauthor: %C(bold blue)%an%Creset %C(blue)<%ae>%Creset%n%C(cyan)%s%n%Creset'
-  # sl = slg
-  # slg = log --branches --oneline --max-count=15 --graph
-  branchlog = log --oneline --graph --max-count=15
-  curlog = log --oneline --first-parent HEAD
-
-  # From Brandon, to try
+  # From Brandon, nice logging
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches=* --remotes=*
   lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15
   lgsa = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --branches=* --remotes=*
 
-  # the good stuff
+  # From Brandom, see all my branches
   tree = lga --simplify-by-decoration --decorate-refs-exclude='refs/pullreqs/*' --decorate-refs-exclude='refs/tags/*' --decorate-refs-exclude='refs/remotes/*/*'
 
-  topull = log --oneline ..upstream/main
+  # TODO branching
   # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
-  newup = remote add upstream
-  newor = remote add origin
-  # then
   # git fetch upstream
   # git rebase upstream/<main branch>
   # then push, might need force
@@ -64,31 +55,18 @@
   # git remote prune origin (not sure on this one)
   # git branch -r --merged
   # git push origin --delete <branch name>
+  newup = remote add upstream
+  newor = remote add origin
   
   # Some nice shorthands
   quickamend = commit -a --amend --no-edit
+  aa = "!f() { git commit --amend --no-edit --trailer=\"Assisted-By:\"$1\"\"; }; f"
   pwf = push --force-with-lease
 
   publish = "!git push -u origin $(git branch --show-current)"
   refresh = "!git up main && git pull && git push origin main"
   dmb = "!git-delete-merged-branches --effort 3"
   branch-diff = "!git diff $(git merge-base --fork-point main)"
-
-  # try out
-  # git config --local submodule.recurse true
-
-  # undo to staged:
-  #
-  #git restore --source=HEAD^ --staged -- file
-  #then commit --amend
-  #
-  #look into git switch
-  #
-  #git dmb alternative??
-  #https://stackoverflow.com/questions/6127328/how-can-i-delete-all-git-branches-which-have-been-merged/6127884#6127884
-  #
-  #other people: https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/checking-out-pull-requests-locally
-  #
 
 [init]
   defaultBranch = main
@@ -99,12 +77,10 @@
 [core]
   excludesFile = ~/repos/dotfiles/.gitignore
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
 [submodule]
-	recurse = true
-[rebase]
-  # updateRefs = true
+  recurse = true
 [pull]
-	ff = only
+  ff = only
 [rerere]
-	enabled = true
+  enabled = true

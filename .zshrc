@@ -223,5 +223,8 @@ resolve_java_home() {
   local jh; jh="$(/usr/libexec/java_home 2>/dev/null)" && [ -n "$jh" ] && { echo "$jh"; return; }
   ls -d /Library/Java/JavaVirtualMachines/*/Contents/Home 2>/dev/null | sort -V | tail -1
 }
-export JAVA_HOME="$(resolve_java_home)"
-export PATH="$JAVA_HOME/bin:$PATH"
+# export JAVA_HOME="$(resolve_java_home)"
+# export PATH="$JAVA_HOME/bin:$PATH"
+
+# direnv
+eval "$(direnv hook zsh)"

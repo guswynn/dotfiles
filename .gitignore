@@ -3,7 +3,7 @@ target-ra/
 *.mdb
 zed/conversations
 zed/prompts
-
+.direnv/
+.envrc
 **/.claude/.cc-writes/
-
 **/.claude/settings.local.json

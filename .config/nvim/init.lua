@@ -142,6 +142,7 @@ require('lazy').setup({
       return metals_config
     end,
     config = function(self, metals_config)
+      metals_config.settings.useGlobalExecutable = true
       local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = self.ft,
