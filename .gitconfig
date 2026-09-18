@@ -24,13 +24,10 @@
   up = switch
 
   # From Brandon, nice logging
-  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
-  lga = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches=* --remotes=*
-  lgs = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15
-  lgsa = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --branches=* --remotes=*
-
-  # From Brandom, see all my branches
-  tree = lga --simplify-by-decoration --decorate-refs-exclude='refs/pullreqs/*' --decorate-refs-exclude='refs/tags/*' --decorate-refs-exclude='refs/remotes/*/*'
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative -15 --branches=* --remotes=*
+  lglong = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative --branches=* --remotes=*
+  treeremote = lglong --simplify-by-decoration --decorate-refs-exclude='refs/pullreqs/*' --decorate-refs-exclude='refs/tags/*'
+  tree = lglong --simplify-by-decoration --decorate-refs-exclude='refs/pullreqs/*' --decorate-refs-exclude='refs/tags/*' --decorate-refs-exclude='refs/remotes/*/*'
 
   # TODO branching
   # up to date forks: https://stefanbauer.me/articles/how-to-keep-your-git-fork-up-to-date
@@ -60,13 +57,19 @@
   
   # Some nice shorthands
   quickamend = commit -a --amend --no-edit
-  aa = "!f() { git commit --amend --no-edit --trailer=\"Assisted-By:\"$1\"\"; }; f"
   pwf = push --force-with-lease
 
   publish = "!git push -u origin $(git branch --show-current)"
   refresh = "!git up main && git pull && git push origin main"
   dmb = "!git-delete-merged-branches --effort 3"
   branch-diff = "!git diff $(git merge-base --fork-point main)"
+
+  # Assisted-By Attribution
+  aa = "!f() { git commit --amend --no-edit --trailer=\"Assisted-By:\"$1\"\"; }; f"
+
+  # Worktrees
+  nwt = "!f() { git worktree add ../ann_\"$1\"_\"$2\" -b ann-\"$1\"/\"$2\"; }; f"
+  wtenv = "!f() { mkdir .elasticbeanstalk; cp ../\"$1\"/.elasticbeanstalk/config.yml .elasticbeanstalk/config.yml; cp ../\"$1\"/.devel.env .devel.env; cp ../\"$1\"/.envrc .envrc; direnv allow; }; f"
 
 [init]
   defaultBranch = main
@@ -76,6 +79,7 @@
 
 [core]
   excludesFile = ~/repos/dotfiles/.gitignore
+	commentchar = ";"
 [merge]
   conflictstyle = diff3
 [submodule]
