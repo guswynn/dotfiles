@@ -59,7 +59,26 @@ require('lazy').setup({
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp',
+      { "hrsh7th/cmp-vsnip" },
+      { "hrsh7th/vim-vsnip" }
     },
+    config = function()
+      local cmp = require("cmp")
+      local luasnip = require("luasnip")
+
+      cmp.setup({
+        mapping = cmp.mapping.preset,
+        sources = cmp.config.sources({
+          { name = "nvim_lsp" }, -- This provides Metals completions!
+          { name = "luasnip" },
+          { name = "vsnip" },
+        }, {
+          { name = "buffer" },
+          { name = "path" },
+        }),
+      })
+      end
+
   },
   {
     -- lualine as statusline
@@ -134,6 +153,22 @@ require('lazy').setup({
     ft = { "scala", "sbt", "java" },
     opts = function()
       local metals_config = require("metals").bare_config()
+      metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- metals_config.settings.useGlobalExecutable = true
+      metals_config.settings.metalsBinaryPath = "/Users/gus/repos/dotfiles/scripts/metals_fixup.sh"
+
+      metals_config.settings.enableBestEffort = true
+      metals_config.settings.enableSemanticHighlighting = true
+      metals_config.init_options.statusBarProvider = "on"
+      metals_config.settings.inlayHints = {
+        typeParameters = {enable = true },
+        hintsInPatternMatch = {enable = true},
+        inferredTypes = {enable = true},
+        implicitArguments= {enable = true},
+        implicitConversions= {enable = true},
+      }
+
       metals_config.on_attach = function(client, bufnr)
         -- your on_attach function
         on_attach = require('on_attach').on_attach(client, bufnr)
@@ -142,7 +177,7 @@ require('lazy').setup({
       return metals_config
     end,
     config = function(self, metals_config)
-      metals_config.settings.useGlobalExecutable = true
+
       local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
       vim.api.nvim_create_autocmd("FileType", {
         pattern = self.ft,
@@ -153,8 +188,9 @@ require('lazy').setup({
       })
     end
   },
-
-
+  {
+    'yioneko/nvim-vtsls',
+  },
 }, {})
 
 
@@ -247,6 +283,13 @@ require('telescope').setup {
 }
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>gs', builtin.grep_string, { desc = 'Telescope grep string' })
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 
 -- Telescope live_grep in git root
 -- Function to find the git root directory based on the current buffer's path
