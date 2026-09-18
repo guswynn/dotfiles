@@ -77,6 +77,8 @@ precmd() {
     vcs_info
 }
 
+alias hg='git'
+
 # vi mode status for prompt
 function vi_mode() {
 	local mode
@@ -210,10 +212,12 @@ if test -f ~/.zshrc-work; then
   source ~/.zshrc-work
 fi
 
+
 # opencode
 export PATH=/Users/gus/.opencode/bin:$PATH
 alias oc="sbx run --kit ~/repos/dotfiles/.config/opencode opencode-with-config --name"
 alias foc="fence -- opencode"
+
 
 # Java
 export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
@@ -226,5 +230,10 @@ resolve_java_home() {
 # export JAVA_HOME="$(resolve_java_home)"
 # export PATH="$JAVA_HOME/bin:$PATH"
 
-# direnv
+
+# direnv and nix
 eval "$(direnv hook zsh)"
+alias reloaddir="pushd .. && popd"
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
