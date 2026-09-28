@@ -68,7 +68,8 @@
   aa = "!f() { git commit --amend --no-edit --trailer=\"Assisted-By:\"$1\"\"; }; f"
 
   # Worktrees
-  nwt = "!f() { git worktree add ../ann_\"$1\"_\"$2\" -b ann-\"$1\"/\"$2\"; }; f"
+  nw = "!f() { git worktree add ../\"$1\"-\"$2\" -b ann-\"$1\"/\"$2\"; }; f"
+  nwb = "!f() { git worktree add ../wt-\"$1\" -b \"$1\"; }; f"
   wtenv = "!f() { mkdir .elasticbeanstalk; cp ../\"$1\"/.elasticbeanstalk/config.yml .elasticbeanstalk/config.yml; cp ../\"$1\"/.devel.env .devel.env; cp ../\"$1\"/.envrc .envrc; direnv allow; }; f"
 
 [init]
