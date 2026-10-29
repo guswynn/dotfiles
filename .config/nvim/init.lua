@@ -170,12 +170,14 @@ require('lazy').setup({
       local metals_config = require("metals").bare_config()
       metals_config.capabilities = require('blink.cmp').get_lsp_capabilities()
 
+      metals_config.init_options.statusBarProvider = "on"
+
       -- metals_config.settings.useGlobalExecutable = true
       metals_config.settings.metalsBinaryPath = "/Users/gus/repos/dotfiles/scripts/metals_fixup.sh"
 
       metals_config.settings.enableBestEffort = true
       metals_config.settings.enableSemanticHighlighting = true
-      metals_config.init_options.statusBarProvider = "on"
+      metals_config.settings.startMcpServer = true
       metals_config.settings.inlayHints = {
         typeParameters = {enable = true },
         hintsInPatternMatch = {enable = true},
